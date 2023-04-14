@@ -13,12 +13,12 @@
                     </div>
                     @if (session('status') == 'verification-link-sent')
                         <div class="mb-4 alert alert-success">
-                            A new email verification link has been emailed to you!
+                            Email yang baru telah dikirim ke emailmu
                         </div>
                     @endif
                     <div class="card card-primary">
                         <div class="card-header justify-content-center">
-                            <h4>Your email isn't verified</h4>
+                            <h4>Emailmu tidak terdaftar</h4>
                         </div>
                         <div class="card-body">
                             <p>please check your email and go to the link for email verification.</p>

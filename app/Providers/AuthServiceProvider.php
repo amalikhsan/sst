@@ -11,9 +11,11 @@ use Illuminate\Support\Facades\Gate;
 class AuthServiceProvider extends ServiceProvider
 {
     private static $permissions = [
-        'admin' => ['admin'],
+        'mahasiswa' => ['mahasiswa'],
+        'tim_psikolog' => ['tim_psikolog'],
+        'verifikator' => ['verifikator'],
         'pimpinan' => ['pimpinan'],
-        'user' => ['user'],
+        'superadmin' => ['superadmin']
     ];
 
     /**

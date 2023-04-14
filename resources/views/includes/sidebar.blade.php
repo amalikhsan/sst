@@ -22,12 +22,34 @@
             </ul>
         </li> --}}
 
-        @can('admin')
+        @can('superadmin')
             <li class="menu-header">Administrator</li>
             <li class="{{ Route::is('user*') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ route('user.index') }}">
                     <i class="fas fa-users"></i>
                     <span>Manage Users</span>
+                </a>
+            </li>
+        @endcan
+
+        @can('mahasiswa')
+            <li class="menu-header">Activity</li>
+            <li class="{{ Route::is('activity*') ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('activity.index') }}">
+                    <i class="fas fa-users"></i>
+                    <span>test</span>
+                </a>
+                <a class="nav-link" href="{{ route('activity.index') }}">
+                    <i class="fas fa-users"></i>
+                    <span>Manage Users</span>
+                </a>
+                <a class="nav-link" href="{{ route('activity.index') }}">
+                    <i class="fas fa-users"></i>
+                    <span>Manage Users</span>
+                </a>
+                <a class="nav-link" href="{{ route('activity.index') }}">
+                    <i class="fas fa-users"></i>
+                    <span>Interview</span>
                 </a>
             </li>
         @endcan

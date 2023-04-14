@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ActivityReportController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -29,7 +30,11 @@ Route::middleware(['auth', 'verified'])->group(function() {
     Route::put('/change-profile-avatar', [DashboardController::class, 'changeAvatar'])->name('change-profile-avatar');
     Route::delete('/remove-profile-avatar', [DashboardController::class, 'removeAvatar'])->name('remove-profile-avatar');
 
-    Route::middleware(['can:admin'])->group(function() {
+    Route::middleware(['can:superadmin'])->group(function() {
         Route::resource('user', UserController::class);
+    });
+
+    Route::middleware(['can:mahasiswa'])->group(function () {
+        Route::resource('activity', ActivityReportController::class);
     });
 });

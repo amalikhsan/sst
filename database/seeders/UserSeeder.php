@@ -15,25 +15,34 @@ class UserSeeder extends Seeder
     public function run(): void
     {
         User::factory()->create([
-            'name' => 'Super Admin',
-            'email' => 'superadmin@gmail.com',
+            'name' => 'mahasiswa',
+            'email' => 'mahasiswa@gmail.com',
             'email_verified_at' => now(),
-            'role' => 'superadmin',
-            'username' => 'superadmin',
-            'password' => Hash::make('superadmin'),
+            'role' => 'mahasiswa',
+            'username' => 'mahasiswa',
+            'password' => Hash::make('mahasiswa'),
         ]);
 
         User::factory()->create([
-            'name' => 'Admin',
-            'email' => 'admin@gmail.com',
+            'name' => 'tim_psikolog',
+            'email' => 'tim_psikolog@gmail.com',
             'email_verified_at' => now(),
-            'role' => 'admin',
-            'username' => 'admin',
-            'password' => Hash::make('admin'),
+            'role' => 'tim_psikolog',
+            'username' => 'tim_psikolog',
+            'password' => Hash::make('tim_psikolog'),
         ]);
 
         User::factory()->create([
-            'name' => 'Pimpinan',
+            'name' => 'verifikator',
+            'email' => 'verifikator@gmail.com',
+            'email_verified_at' => now(),
+            'role' => 'verifikator',
+            'username' => 'verifikator',
+            'password' => Hash::make('verifikator'),
+        ]);
+
+        User::factory()->create([
+            'name' => 'pimpinan',
             'email' => 'pimpinan@gmail.com',
             'email_verified_at' => now(),
             'role' => 'pimpinan',
@@ -41,6 +50,15 @@ class UserSeeder extends Seeder
             'password' => Hash::make('pimpinan'),
         ]);
 
-        User::factory(19)->create();
+        User::factory()->create([
+            'name' => 'superadmin',
+            'email' => 'superadmin@gmail.com',
+            'email_verified_at' => now(),
+            'role' => 'superadmin',
+            'username' => 'superadmin',
+            'password' => Hash::make('superadmin'),
+        ]);
+
+        User::factory(5)->create();
     }
 }
