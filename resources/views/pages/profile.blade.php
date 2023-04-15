@@ -15,7 +15,7 @@
                 </div>
                 <div class="card-body">
                     <div class="form-group">
-                        <label>Full Name</label>
+                        <label>Full Name (Nama Lengkap)</label>
                         <input type="text" id="name" name="name" class="form-control @error('name','updateProfileInformation') is-invalid @enderror" value="{{ old('name', auth()->user()->name) }}">
                         @error('name', 'updateProfileInformation')
                             <div class="invalid-feedback">

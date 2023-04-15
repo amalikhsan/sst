@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title', 'Create New User')
-@section('desc', ' On this page you can create a new user. ')
+@section('desc', ' Buat User Baru. ')
 
 @section('content')
     <form action="{{ route('user.store') }}" method="POST" enctype="multipart/form-data">

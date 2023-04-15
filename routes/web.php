@@ -1,9 +1,9 @@
 <?php
 
-use App\Http\Controllers\ActivityReportController;
-use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\mahasiswaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,6 +35,7 @@ Route::middleware(['auth', 'verified'])->group(function() {
     });
 
     Route::middleware(['can:mahasiswa'])->group(function () {
-        Route::resource('activity', ActivityReportController::class);
+        Route::get('self-assessment', [mahasiswaController::class,'selfassessment'])->name('self-assessment');
+        Route::get('interview', [mahasiswaController::class,'interview'])->name('interview');
     });
 });

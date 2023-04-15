@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title', 'Manage Users')
-@section('desc', ' On this page you can manage users. ')
+@section('desc', ' Kelola Pengguna. ')
 
 @section('content')
     <div class="card">
@@ -19,7 +19,7 @@
                 <table class="table table-striped w-100" id="datatable">
                     <thead>
                         <tr>
-                            <th>#</th>
+                            <th>No</th>
                             <th>Photo</th>
                             <th>Name</th>
                             <th>Email</th>

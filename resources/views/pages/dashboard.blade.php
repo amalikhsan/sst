@@ -4,5 +4,5 @@
 @section('desc', 'Page Dashboard. ')
 
 @section('content')
-Anda Login Sebagai {{ $role }}!
+You are login as {{ $role }}!
 @endsection

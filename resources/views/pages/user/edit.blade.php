@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title', 'Edit User')
-@section('desc', ' On this page you can edit a user. ')
+@section('desc', ' Ubah Pengguna. ')
 
 @section('content')
     <form action="{{ route('user.update', $item->id) }}" method="POST" enctype="multipart/form-data">

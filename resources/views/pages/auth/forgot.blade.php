@@ -1,6 +1,6 @@
 @extends('layouts.auth')
 
-@section('title', 'Lupa Password')
+@section('title', 'Forgot Password')
 
 @section('content')
     <section class="section">
@@ -18,7 +18,7 @@
                     @endif
                     <div class="card card-primary">
                         <div class="card-header justify-content-center">
-                            <h4>Lupa Password</h4>
+                            <h4>Forgot Password</h4>
                         </div>
                         <div class="card-body">
                             <p class="text-muted">We will send a link to reset your password</p>
