@@ -46,4 +46,25 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function selfassessment()
+    {
+        return $this->hasOne(User::class);
+    }
+
+    public function interview()
+    {
+        return $this->hasOne(User::class);
+    }
+
+    public function studentprofile()
+    {
+        return $this->hasOne(User::class);
+    }
+
+    public function activity()
+    {
+        return $this->hasOne(User::class);
+    }
+
 }

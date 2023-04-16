@@ -9,7 +9,9 @@
             <h4>Interview</h4>
         </div>
         <div class="card-body">
-            <form action="" class="mb-2">
+            <form action="{{ route('interview-store') }}" method="POST" class="mb-2">
+                @method('POST')
+                @csrf
                 <label for="date">Choose Your Date</label>
                 <div class="d-flex">
                     <input type="date" class="form-control mr-2" id="date">

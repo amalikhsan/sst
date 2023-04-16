@@ -91,7 +91,7 @@ class UserController extends Controller
         ];
 
         if($request->hasFile('avatar') && $request->file('avatar')->isValid()){
-            $path = "avatar/";
+            $path = "avatar";
             $oldfile = $path.basename($user->avatar);
             Storage::disk('public')->delete($oldfile);
             $data['avatar'] = Storage::disk('public')->put($path, $request->file('avatar'));
