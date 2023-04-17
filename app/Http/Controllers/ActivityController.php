@@ -66,7 +66,7 @@ class ActivityController extends Controller
 
         Activity::create($data);
 
-        return redirect('activity-create')->with('toast', 'showToast("Data berhasil disimpan")');
+        return redirect('activityreport-create')->with('toast', 'showToast("Data berhasil disimpan")');
     }
 
     /**
@@ -127,7 +127,7 @@ class ActivityController extends Controller
 
         $Activity->update($data);
 
-        return redirect('activity-report/'.$id.'/edit')->with('toast', 'showToast("Data berhasil diupdate")');
+        return redirect('activityreport/'.$id.'/edit')->with('toast', 'showToast("Data berhasil diupdate")');
     }
 
     /**

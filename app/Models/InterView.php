@@ -13,6 +13,6 @@ class InterView extends Model
 
     public function interview()
     {
-        return $this->belongsTo(InterView::class);
+        return $this->belongsTo(User::class);
     }
 }

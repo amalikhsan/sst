@@ -23,7 +23,7 @@ class InterViewController extends Controller
      */
     public function create()
     {
-        return view('pages.activity.create');
+        return view('pages.interview.create');
     }
 
     /**
@@ -59,7 +59,7 @@ class InterViewController extends Controller
 
         InterView::create($data);
 
-        return redirect('activity-create')->with('toast', 'showToast("Data berhasil disimpan")');
+        return redirect('interview-create')->with('toast', 'showToast("Data berhasil disimpan")');
     }
 
     /**
@@ -77,7 +77,7 @@ class InterViewController extends Controller
     {
         $item = InterView::findOrFail($id);
 
-        return view('pages.activity.edit', [
+        return view('pages.interview.edit', [
             'item'  =>  $item
         ]);
     }
@@ -87,7 +87,7 @@ class InterViewController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $Activity = InterView::findOrFail($id);
+        $interview = InterView::findOrFail($id);
 
         $userid = auth()->user()->id;
 
@@ -113,14 +113,14 @@ class InterViewController extends Controller
 
         if ($request->hasFile('file-bukti') && $request->file('file-bukti')->isValid()) {
             $path = "file-bukti";
-            $oldfile = $path . basename($Activity->avatar);
+            $oldfile = $path . basename($interview->avatar);
             Storage::disk('public')->delete($oldfile);
             $data['bukti'] = Storage::disk('public')->put($path, $request->file('file-bukti'));
         }
 
-        $Activity->update($data);
+        $interview->update($data);
 
-        return redirect('activity-report/' . $id . '/edit')->with('toast', 'showToast("Data berhasil diupdate")');
+        return redirect('interview/' . $id . '/edit')->with('toast', 'showToast("Data berhasil diupdate")');
     }
 
     /**
@@ -128,8 +128,8 @@ class InterViewController extends Controller
      */
     public function destroy(string $id)
     {
-        $Activity = InterView::findOrFail($id);
-        $Activity->delete();
+        $interview = InterView::findOrFail($id);
+        $interview->delete();
 
         return redirect()->back()->with('toast', 'showToast("Data berhasil dihapus")');
     }

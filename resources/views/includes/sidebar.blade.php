@@ -34,28 +34,28 @@
 
         @can('mahasiswa')
             <li class="menu-header">Activity</li>
-            <li class="{{ Route::is('selfassessment') ? 'active' : '' }}">
-                <a class="nav-link" href="{{ route('selfassessment') }}">
-                    <i class="fas fa-users"></i>
-                    <span>Self assessment</span>
-                </a>
-            </li>
-            <li class="{{ Route::is('interview') ? 'active' : '' }}">
-                <a class="nav-link" href="{{ route('interview') }}">
-                    <i class="fas fa-users"></i>
-                    <span>Interview</span>
-                </a>
-            </li>
             <li class="{{ Route::is('studentprofile') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ route('studentprofile') }}">
                     <i class="fas fa-users"></i>
                     <span>Student Profile</span>
                 </a>
             </li>
+            <li class="{{ Route::is('selfassessment') ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('selfassessment') }}">
+                    <i class="fas fa-users"></i>
+                    <span>Self assessment</span>
+                </a>
+            </li>
             <li class="{{ Route::is('activityreport') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ route('activityreport') }}">
                     <i class="fas fa-users"></i>
                     <span>Activity Report</span>
+                </a>
+            </li>
+            <li class="{{ Route::is('interview') ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('interview') }}">
+                    <i class="fas fa-users"></i>
+                    <span>Interview</span>
                 </a>
             </li>
         @endcan

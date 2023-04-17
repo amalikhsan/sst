@@ -15,7 +15,11 @@ class StudentProfileController extends Controller
      */
     public function index()
     {
-        return view('pages.studentprofile.index');
+        $item = StudentProfile::where('user_id',auth()->user()->id)->first();
+        
+        return view('pages.studentprofile.index',[
+            'item'=>$item
+        ]);
     }
 
     /**
@@ -23,7 +27,7 @@ class StudentProfileController extends Controller
      */
     public function create()
     {
-        return view('pages.activity.create');
+        return view('pages.studentprofile.create');
     }
 
     /**
@@ -32,34 +36,38 @@ class StudentProfileController extends Controller
     public function store(Request $request)
     {
         $userid = auth()->user()->id;
-
+        
         $request->validate([
-            'bidang' => 'required|max:255',
-            'capaian' => 'required|max:255',
-            'lingkup' => 'required|max:255',
-            'peserta' => 'required|max:255',
-            'kegiatan' => 'required|max:255',
-            'tglkegiatan' => 'required|max:255',
-            'file-bukti' => 'required|mimetypes:application/pdf|max:10000'
+            'npm' =>'required|max:255',
+            'jurusan' =>'required|max:255',
+            'prodi' =>'required|max:255',
+            'jalur_masuk' =>'required|max:255',
+            'semester' =>'required|max:255',
+            'beasiswa' =>'required|max:255',
+            'pendapatan' =>'required|max:255',
+            'saku' =>'required|max:255',
+            'ip' => 'required|numeric|max:255',
+            'ipk' => 'required|numeric|max:255'
         ]);
-
+        
         $data = [
             'user_id' => $userid,
-            'bidang' => $request->bidang,
-            'capaian' => $request->capaian,
-            'lingkup' => $request->lingkup,
-            'jumlah_peserta' => $request->peserta,
-            'nama_kegiatan' => $request->kegiatan,
-            'tanggal_kegiatan' => $request->tglkegiatan
+            'npm'=> $request->npm,
+            'jurusan'=> $request->jurusan,
+            'prodi'=> $request->prodi,
+            'jalur_masuk'=> $request->jalur_masuk,
+            'semester'=> $request->semester,
+            'beasiswa'=> $request->beasiswa,
+            'pendapatan_orangtua'=> $request->pendapatan,
+            'uang_saku_satu_bulan'=> $request->saku,
+            'index_prestasi'=> $request->ip,
+            'index_prestasi_kumulatif'=> $request->ipk,
+            'status'=> $request->status
         ];
-
-        if ($request->hasFile('file-bukti')) {
-            $data['bukti'] = $request->file('file-bukti')->store('file-bukti', 'public');
-        }
-
+        
         StudentProfile::create($data);
 
-        return redirect('activity-create')->with('toast', 'showToast("Data berhasil disimpan")');
+        return redirect('studentprofile')->with('toast', 'showToast("Data berhasil disimpan")');
     }
 
     /**
@@ -77,7 +85,7 @@ class StudentProfileController extends Controller
     {
         $item = StudentProfile::findOrFail($id);
 
-        return view('pages.activity.edit', [
+        return view('pages.studentprofile.edit', [
             'item'  =>  $item
         ]);
     }
@@ -87,7 +95,7 @@ class StudentProfileController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $Activity = StudentProfile::findOrFail($id);
+        $studentprofile = StudentProfile::findOrFail($id);
 
         $userid = auth()->user()->id;
 
@@ -98,7 +106,7 @@ class StudentProfileController extends Controller
             'peserta' => 'required|max:255',
             'kegiatan' => 'required|max:255',
             'tglkegiatan' => 'required|max:255',
-            'file-bukti' => 'required|mimetypes:application/pdf|max:10000'
+            'file-bukti' => 'required|mimetypes:application/pdf|max:1000'
         ]);
 
         $data = [
@@ -113,14 +121,14 @@ class StudentProfileController extends Controller
 
         if ($request->hasFile('file-bukti') && $request->file('file-bukti')->isValid()) {
             $path = "file-bukti";
-            $oldfile = $path . basename($Activity->avatar);
+            $oldfile = $path . basename($studentprofile->avatar);
             Storage::disk('public')->delete($oldfile);
             $data['bukti'] = Storage::disk('public')->put($path, $request->file('file-bukti'));
         }
 
-        $Activity->update($data);
+        $studentprofile->update($data);
 
-        return redirect('activity-report/' . $id . '/edit')->with('toast', 'showToast("Data berhasil diupdate")');
+        return redirect('studentprofile/' . $id . '/edit')->with('toast', 'showToast("Data berhasil diupdate")');
     }
 
     /**
@@ -128,8 +136,8 @@ class StudentProfileController extends Controller
      */
     public function destroy(string $id)
     {
-        $Activity = StudentProfile::findOrFail($id);
-        $Activity->delete();
+        $studentprofile = StudentProfile::findOrFail($id);
+        $studentprofile->delete();
 
         return redirect()->back()->with('toast', 'showToast("Data berhasil dihapus")');
     }

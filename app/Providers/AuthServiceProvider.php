@@ -13,7 +13,7 @@ class AuthServiceProvider extends ServiceProvider
     private static $permissions = [
         'mahasiswa' => ['mahasiswa'],
         'tim_psikolog' => ['tim_psikolog'],
-        'verifikator' => ['verifikator'],
+        'validator' => ['validator'],
         'pimpinan' => ['pimpinan'],
         'superadmin' => ['superadmin']
     ];

@@ -14,17 +14,16 @@ return new class extends Migration
         Schema::create('student_profiles', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained('users');
-            $table->string('nama_lengkap');
             $table->string('npm');
             $table->string('jurusan');
             $table->string('prodi');
             $table->string('jalur_masuk');
-            $table->string('semester');
             $table->string('beasiswa');
             $table->string('pendapatan_orangtua');
             $table->string('uang_saku_satu_bulan');
             $table->string('index_prestasi');
             $table->string('index_prestasi_kumulatif');
+            $table->enum('status', ['allow', 'deny'])->nullable()->default('deny');
             $table->timestamps();
         });
     }

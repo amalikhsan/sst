@@ -13,7 +13,7 @@
         </div>
         <div class="card-body">
             <div class="form-group">
-                <label for="bidang">Bidang Kegiatan</label>
+                <label class="form-label" for="bidang">Bidang Kegiatan</label>
                 <select name="bidang" class="form-control  @error('bidang') is-invalid @enderror" id="bidang">
                     <option value="">Pilih bidang</option>
                     <option value="Kompetisi">Kompetisi</option>
@@ -31,7 +31,7 @@
                 @enderror
             </div>
             <div class="form-group">
-                <label for="capaian">Capaian Kegiatan</label>
+                <label class="form-label" for="capaian">Capaian Kegiatan</label>
                 <select name="capaian" class="form-control  @error('capaian') is-invalid @enderror" id="capaian">
                     <option value="">Pilih capaian</option>
 
@@ -109,7 +109,7 @@
                 @enderror
             </div>
             <div class="form-group">
-                <label for="lingkup">Lingkup Kegiatan</label>
+                <label class="form-label" for="lingkup">Lingkup Kegiatan</label>
                 <select name="lingkup" class="form-control  @error('lingkup') is-invalid @enderror">
                     <option value="">Pilih lingkup</option>
                     <option class="d-none" value="Internal" id="lingkupan">Internal</option>
@@ -124,8 +124,8 @@
                 @enderror
             </div>
             <div class="form-group">
-                <label for="peserta">Jumlah Peserta Kegiatan</label>
-                <input type="number" id="peserta" name="peserta" class="form-control @error('peserta') is-invalid @enderror"  value="{{ old('peserta') }}">
+                <label class="form-label" for="peserta">Jumlah Peserta Kegiatan</label>
+                <input type="number" id="peserta" name="peserta" class="form-control @error('peserta') is-invalid @enderror"  value="{{ old('peserta') }}" placeholder="Masukkan Jumlah Peserta">
                 @error('peserta')
                     <div class="invalid-feedback">
                         {{ $message }}
@@ -133,8 +133,8 @@
                 @enderror
             </div>
             <div class="form-group">
-                <label for="kegiatan">Nama Kegiatan</label>
-                <input type="text" id="kegiatan" name="kegiatan" class="form-control @error('kegiatan') is-invalid @enderror" value="{{ old('kegiatan') }}">
+                <label class="form-label" for="kegiatan">Nama Kegiatan</label>
+                <input type="text" id="kegiatan" name="kegiatan" class="form-control @error('kegiatan') is-invalid @enderror" value="{{ old('kegiatan') }}" placeholder="Masukkan Nama Kegiatan">
                 @error('kegiatan')
                     <div class="invalid-feedback">
                         {{ $message }}
@@ -142,7 +142,7 @@
                 @enderror
             </div>
             <div class="form-group">
-                <label for="file-bukti">Unggah Bukti Kegiatan (Sertifikat/Surat Tugas/Foto/Sk dll) [.pdf]</label>
+                <label class="form-label" for="file-bukti">Unggah Bukti Kegiatan (Sertifikat/Surat Tugas/Foto/Sk dll) [.pdf]</label>
                 <div class="custom-file">
                     <input type="file" class="custom-file-input @error('file-bukti') is-invalid @enderror" name="file-bukti" id="file-bukti">
                     <label class="custom-file-label" for="file-bukti">Choose file</label>
@@ -154,7 +154,7 @@
                 @enderror
             </div>
             <div class="form-group">
-                <label for="tglkegiatan">Tanggal Kegiatan</label>
+                <label class="form-label" for="tglkegiatan">Tanggal Kegiatan</label>
                 <input type="date" id="tglkegiatan" name="tglkegiatan" class="form-control @error('tglkegiatan') is-invalid @enderror" value="{{ old('tglkegiatan') }}">
                 @error('tglkegiatan')
                     <div class="invalid-feedback">

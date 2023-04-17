@@ -15,7 +15,7 @@
                         <input type="file" class="d-none" id="avatar" name="avatar">
                         <div class="card-body">
                             <div class="form-group row">
-                                <label for="name" class="col-sm-3 col-form-label">Name</label>
+                                <label for="name" class="col-sm-3 col-form-label">Full Name (Nama Lengkap)</label>
                                 <div class="col-sm-9">
                                     <input value="{{ old('name') }}" type="text" class="form-control @error('name') is-invalid @enderror" name="name" id="name" placeholder="Nama">
                                     @error('name')
@@ -40,9 +40,10 @@
                                 <label for="role" class="col-sm-3 col-form-label">Role</label>
                                 <div class="col-sm-9">
                                     <select name="role" id="role" class="form-control text-capitalize @error('role') is-invalid @enderror">
+                                        <option value="mahasiswa">mahasiswa</option>
+                                        <option value="tim_psikolog">tim_psikolog</option>
+                                        <option value="validator">validator</option>
                                         <option value="pimpinan">pimpinan</option>
-                                        <option value="user">user</option>
-                                        <option value="admin">admin</option>
                                         <option value="superadmin">superadmin</option>
                                     </select>
                                     @error('role')

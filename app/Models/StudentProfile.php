@@ -13,6 +13,6 @@ class StudentProfile extends Model
 
     public function studentprofile()
     {
-        return $this->belongsTo(StudentProfile::class);
+        return $this->belongsTo(User::class);
     }
 }

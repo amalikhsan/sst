@@ -23,7 +23,7 @@ class SelfAssessmentController extends Controller
      */
     public function create()
     {
-        return view('pages.activity.create');
+        return view('pages.selfassessment.create');
     }
 
     /**
@@ -59,7 +59,7 @@ class SelfAssessmentController extends Controller
 
      SelfAssessment::create($data);
 
-        return redirect('activity-create')->with('toast', 'showToast("Data berhasil disimpan")');
+        return redirect('selfassessment-create')->with('toast', 'showToast("Data berhasil disimpan")');
     }
 
     /**
@@ -77,7 +77,7 @@ class SelfAssessmentController extends Controller
     {
         $item = SelfAssessment::findOrFail($id);
 
-        return view('pages.activity.edit', [
+        return view('pages.selfassessment.edit', [
             'item'  =>  $item
         ]);
     }
@@ -87,7 +87,7 @@ class SelfAssessmentController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $Activity = SelfAssessment::findOrFail($id);
+        $selfassessment = SelfAssessment::findOrFail($id);
 
         $userid = auth()->user()->id;
 
@@ -113,14 +113,14 @@ class SelfAssessmentController extends Controller
 
         if ($request->hasFile('file-bukti') && $request->file('file-bukti')->isValid()) {
             $path = "file-bukti";
-            $oldfile = $path . basename($Activity->avatar);
+            $oldfile = $path . basename($selfassessment->avatar);
             Storage::disk('public')->delete($oldfile);
             $data['bukti'] = Storage::disk('public')->put($path, $request->file('file-bukti'));
         }
 
-        $Activity->update($data);
+        $selfassessment->update($data);
 
-        return redirect('activity-report/' . $id . '/edit')->with('toast', 'showToast("Data berhasil diupdate")');
+        return redirect('selfassessment/' . $id . '/edit')->with('toast', 'showToast("Data berhasil diupdate")');
     }
 
     /**
@@ -128,8 +128,8 @@ class SelfAssessmentController extends Controller
      */
     public function destroy(string $id)
     {
-        $Activity = SelfAssessment::findOrFail($id);
-        $Activity->delete();
+        $selfassessment = SelfAssessment::findOrFail($id);
+        $selfassessment->delete();
 
         return redirect()->back()->with('toast', 'showToast("Data berhasil dihapus")');
     }

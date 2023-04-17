@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('activities', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained('users');
+            $table->string('semester');
             $table->string('bidang');
             $table->string('capaian');
             $table->string('lingkup');
@@ -21,7 +22,8 @@ return new class extends Migration
             $table->string('nama_kegiatan');
             $table->string('tanggal_kegiatan');
             $table->string('bukti');
-            $table->enum('status',['allow','deny'])->default('deny');
+            $table->string('link');
+            $table->enum('status',['allow','deny'])->nullable()->default('deny');
             $table->timestamps();
         });
     }

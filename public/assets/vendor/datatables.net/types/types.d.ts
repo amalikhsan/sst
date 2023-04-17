@@ -2028,7 +2028,7 @@ declare namespace DataTables {
         orderData?: number | number[];
 
         /**
-         * Live DOM sorting type assignment. Since: 1.10
+         * Live DOM sorting type assessment. Since: 1.10
          */
         orderDataType?: string;
 
@@ -2072,7 +2072,7 @@ declare namespace DataTables {
         visible?: boolean;
 
         /**
-         * Column width assignment. Since: 1.10
+         * Column width assessment. Since: 1.10
          */
         width?: string;
     }

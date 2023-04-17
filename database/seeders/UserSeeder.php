@@ -36,8 +36,8 @@ class UserSeeder extends Seeder
             'name' => 'verifikator',
             'email' => 'verifikator@gmail.com',
             'email_verified_at' => now(),
-            'role' => 'verifikator',
-            'username' => 'verifikator',
+            'role' => 'validator',
+            'username' => 'validator',
             'password' => Hash::make('verifikator'),
         ]);
 
