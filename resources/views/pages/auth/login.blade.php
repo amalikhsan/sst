@@ -60,7 +60,7 @@
                         </div>
                     </div>
                     <div class="simple-footer">
-                        Copyright {{ date('Y') }} &copy; {{ env('APP_NAME') }}. Made by M. Amal Ikhsani
+                        Copyright {{ date('Y') }} &copy; {{ env('APP_NAME') }} <div class="bullet"></div> Code by <a href="https://instagram.com/mamalikhsani">M. Amal Ikhsani</a>
                     </div>
                 </div>
             </div>

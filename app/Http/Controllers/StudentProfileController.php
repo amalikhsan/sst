@@ -17,7 +17,7 @@ class StudentProfileController extends Controller
     {
         $item = StudentProfile::where('user_id',auth()->user()->id)->first();
         
-        return view('pages.studentprofile.index',[
+        return view('pages.mahasiswa.studentprofile.index',[
             'item'=>$item
         ]);
     }
@@ -27,7 +27,7 @@ class StudentProfileController extends Controller
      */
     public function create()
     {
-        return view('pages.studentprofile.create');
+        return view('pages.mahasiswa.studentprofile.create');
     }
 
     /**
@@ -40,14 +40,13 @@ class StudentProfileController extends Controller
         $request->validate([
             'npm' =>'required|max:255',
             'jurusan' =>'required|max:255',
-            'prodi' =>'required|max:255',
+            'prodi' =>'required|max:255|in:D3,D4',
             'jalur_masuk' =>'required|max:255',
-            'semester' =>'required|max:255',
             'beasiswa' =>'required|max:255',
             'pendapatan' =>'required|max:255',
             'saku' =>'required|max:255',
-            'ip' => 'required|numeric|max:255',
-            'ipk' => 'required|numeric|max:255'
+            'ip' => 'nullable|numeric|max:255',
+            'ipk' => 'nullable|numeric|max:255'
         ]);
         
         $data = [
@@ -56,7 +55,6 @@ class StudentProfileController extends Controller
             'jurusan'=> $request->jurusan,
             'prodi'=> $request->prodi,
             'jalur_masuk'=> $request->jalur_masuk,
-            'semester'=> $request->semester,
             'beasiswa'=> $request->beasiswa,
             'pendapatan_orangtua'=> $request->pendapatan,
             'uang_saku_satu_bulan'=> $request->saku,
@@ -85,7 +83,7 @@ class StudentProfileController extends Controller
     {
         $item = StudentProfile::findOrFail($id);
 
-        return view('pages.studentprofile.edit', [
+        return view('pages.mahasiswa.studentprofile.edit', [
             'item'  =>  $item
         ]);
     }
@@ -100,35 +98,34 @@ class StudentProfileController extends Controller
         $userid = auth()->user()->id;
 
         $request->validate([
-            'bidang' => 'required|max:255',
-            'capaian' => 'required|max:255',
-            'lingkup' => 'required|max:255',
-            'peserta' => 'required|max:255',
-            'kegiatan' => 'required|max:255',
-            'tglkegiatan' => 'required|max:255',
-            'file-bukti' => 'required|mimetypes:application/pdf|max:1000'
+            'npm' => 'required|max:255',
+            'jurusan' => 'required|max:255',
+            'prodi' => 'required|max:255|in:D3,D4',
+            'jalur_masuk' => 'required|max:255',
+            'beasiswa' => 'required|max:255',
+            'pendapatan' => 'required|max:255',
+            'saku' => 'required|max:255',
+            'ip' => 'nullable|numeric|max:255',
+            'ipk' => 'nullable|numeric|max:255'
         ]);
 
         $data = [
             'user_id' => $userid,
-            'bidang' => $request->bidang,
-            'capaian' => $request->capaian,
-            'lingkup' => $request->lingkup,
-            'jumlah_peserta' => $request->peserta,
-            'nama_kegiatan' => $request->kegiatan,
-            'tanggal_kegiatan' => $request->tglkegiatan
+            'npm' => $request->npm,
+            'jurusan' => $request->jurusan,
+            'prodi' => $request->prodi,
+            'jalur_masuk' => $request->jalur_masuk,
+            'beasiswa' => $request->beasiswa,
+            'pendapatan_orangtua' => $request->pendapatan,
+            'uang_saku_satu_bulan' => $request->saku,
+            'index_prestasi' => $request->ip,
+            'index_prestasi_kumulatif' => $request->ipk,
+            'status' => $request->status
         ];
-
-        if ($request->hasFile('file-bukti') && $request->file('file-bukti')->isValid()) {
-            $path = "file-bukti";
-            $oldfile = $path . basename($studentprofile->avatar);
-            Storage::disk('public')->delete($oldfile);
-            $data['bukti'] = Storage::disk('public')->put($path, $request->file('file-bukti'));
-        }
 
         $studentprofile->update($data);
 
-        return redirect('studentprofile/' . $id . '/edit')->with('toast', 'showToast("Data berhasil diupdate")');
+        return redirect('studentprofile/')->with('toast', 'showToast("Data berhasil diupdate")');
     }
 
     /**

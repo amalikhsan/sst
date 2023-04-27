@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class SelfAssessment extends Model
 {
@@ -11,8 +12,8 @@ class SelfAssessment extends Model
 
     protected $guarded = ['id'];
 
-    public function selfassessment()
+    public function user()
     {
-        return $this->belongsTo(SelfAssessment::class);
+        return $this->belongsTo(User::class);
     }
 }

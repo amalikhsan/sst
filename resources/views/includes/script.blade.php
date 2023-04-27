@@ -102,6 +102,13 @@
             title: msg,
         })
     }
+
+    const showToast2 = (msg, icon = "error") => {
+        Toast.fire({
+            icon: icon,
+            title: msg,
+        })
+    }
 </script>
 
 @if ($toast = Session::get('toast'))

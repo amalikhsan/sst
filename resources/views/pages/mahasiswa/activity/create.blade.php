@@ -13,9 +13,28 @@
         </div>
         <div class="card-body">
             <div class="form-group">
+                <label class="form-label" for="semester">Semester (Saat Ikut Kegiatan)</label>
+                <select name="semester" class="form-control  @error('semester') is-invalid @enderror" id="semester">
+                    <option value="">Pilih Semester</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                </select>
+                @error('semester')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                @enderror
+            </div>
+            <div class="form-group">
                 <label class="form-label" for="bidang">Bidang Kegiatan</label>
                 <select name="bidang" class="form-control  @error('bidang') is-invalid @enderror" id="bidang">
-                    <option value="">Pilih bidang</option>
+                    <option value="">Pilih Bidang</option>
                     <option value="Kompetisi">Kompetisi</option>
                     <option value="Rekognisi">Rekognisi</option>
                     <option value="Penghargaan">Penghargaan</option>
@@ -33,7 +52,7 @@
             <div class="form-group">
                 <label class="form-label" for="capaian">Capaian Kegiatan</label>
                 <select name="capaian" class="form-control  @error('capaian') is-invalid @enderror" id="capaian">
-                    <option value="">Pilih capaian</option>
+                    <option value="">Pilih Capaian Kegiatan</option>
 
                     <option class="d-none" value="Juara 1 Perorangan" id="satu">Juara 1 Perorangan</option>
                     <option class="d-none" value="Juara 2 Perorangan" id="satu">Juara 2 Perorangan</option>
@@ -111,7 +130,7 @@
             <div class="form-group">
                 <label class="form-label" for="lingkup">Lingkup Kegiatan</label>
                 <select name="lingkup" class="form-control  @error('lingkup') is-invalid @enderror">
-                    <option value="">Pilih lingkup</option>
+                    <option value="">Pilih Lingkup</option>
                     <option class="d-none" value="Internal" id="lingkupan">Internal</option>
                     <option class="d-none" value="Nasional" id="lingkupan">Nasional</option>
                     <option class="d-none" value="Regional" id="lingkupan">Regional</option>
@@ -154,6 +173,15 @@
                 @enderror
             </div>
             <div class="form-group">
+                <label class="form-label" for="link">Link Kegiatan</label>
+                <input type="text" id="link" name="link" class="form-control @error('link') is-invalid @enderror" value="{{ old('link') }}" placeholder="Masukkan Link Kegiatan">
+                @error('link')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                @enderror
+            </div>
+            <div class="form-group">
                 <label class="form-label" for="tglkegiatan">Tanggal Kegiatan</label>
                 <input type="date" id="tglkegiatan" name="tglkegiatan" class="form-control @error('tglkegiatan') is-invalid @enderror" value="{{ old('tglkegiatan') }}">
                 @error('tglkegiatan')
@@ -165,7 +193,7 @@
         </div>
         <div class="card-footer text-right">
             <button type="reset" class="btn btn-danger m-2">Reset</button>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="button" class="btn btn-primary" id="btn3">Submit</button>
         </div>
     </form>
 </div>
@@ -173,6 +201,27 @@
 
 @push('scripts')
 <script>
+    $('#btn3').click(function(){
+        swal.fire({
+    title: 'Yakin ingin submit?',
+    text: "Data tidak dapat dirubah setelah anda menekan tombol submit.",
+    icon: 'question',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Ya, submit.'
+    })
+    .then((res) => {
+    if (res.dismiss!="cancel") {
+        $("<input/>").attr("type", "hidden")
+            .attr("name", "status")
+            .attr("value", "deny")
+            .appendTo("form");
+        $('form').submit();
+    }
+    });
+    });
+
     $('#bidang').change(function(){
         // declare variables
         var val = $('#bidang').val();

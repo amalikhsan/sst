@@ -76,13 +76,18 @@ Route::middleware(['auth', 'verified'])->group(function() {
         Route::delete('activityreport/{id}', [ActivityController::class, 'destroy'])->name('selfassessment-delete');
     });
 
+    Route::middleware(['can:timpsikolog'])->group(function () {
+        // every superadmin
+        Route::resource('user', UserController::class);
+    });
+
     Route::middleware(['can:validator'])->group(function () {
         // validator activity report
         Route::get('activityreport-validator', [ActivityController::class, 'index'])->name('activityreport-validator');
         Route::put('activityreport-validator-update/{id}', [ActivityController::class, 'update'])->name('activityreport-validator-update');
     });
 
-    Route::middleware(['can:superadmin'])->group(function () {
+    Route::middleware(['can:pimpinan'])->group(function () {
         // every superadmin
         Route::resource('user', UserController::class);
     });

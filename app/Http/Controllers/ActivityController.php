@@ -22,7 +22,7 @@ class ActivityController extends Controller
             return DataTables::of($query)->make();
         }
 
-        return view('pages.activity.index');
+        return view('pages.mahasiswa.activity.index');
     }
 
     /**
@@ -30,7 +30,7 @@ class ActivityController extends Controller
      */
     public function create()
     {
-        return view('pages.activity.create');
+        return view('pages.mahasiswa.activity.create');
     }
 
     /**
@@ -41,11 +41,13 @@ class ActivityController extends Controller
         $userid = auth()->user()->id;
 
         $request->validate([
+            'semester' => 'required|max:255',
             'bidang' => 'required|max:255',
             'capaian' => 'required|max:255',
             'lingkup' => 'required|max:255',
             'peserta' => 'required|max:255',
             'kegiatan' => 'required|max:255',
+            'link' => 'required|url|max:255',
             'tglkegiatan' => 'required|max:255',
             'file-bukti' => 'required|mimetypes:application/pdf|max:10000'
         ]);
@@ -53,10 +55,12 @@ class ActivityController extends Controller
         $data = [
             'user_id' => $userid,
             'bidang' => $request->bidang,
+            'semester' => $request->semester,
             'capaian' => $request->capaian,
             'lingkup' => $request->lingkup,
             'jumlah_peserta' => $request->peserta,
             'nama_kegiatan' => $request->kegiatan,
+            'link' => $request->link,
             'tanggal_kegiatan' => $request->tglkegiatan
         ];
         
@@ -84,7 +88,7 @@ class ActivityController extends Controller
     {
         $item = Activity::findOrFail($id);
 
-        return view('pages.activity.edit', [
+        return view('pages.mahasiswa.activity.edit', [
             'item'  =>  $item
         ]);
     }
@@ -94,40 +98,44 @@ class ActivityController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $Activity = Activity::findOrFail($id);
+        // $Activity = Activity::findOrFail($id);
 
-        $userid = auth()->user()->id;
+        // $userid = auth()->user()->id;
 
-        $request->validate([
-            'bidang' => 'required|max:255',
-            'capaian' => 'required|max:255',
-            'lingkup' => 'required|max:255',
-            'peserta' => 'required|max:255',
-            'kegiatan' => 'required|max:255',
-            'tglkegiatan' => 'required|max:255',
-            'file-bukti' => 'required|mimetypes:application/pdf|max:10000'
-        ]);
+        // $request->validate([
+        //     'semester' => 'required|max:255',
+        //     'bidang' => 'required|max:255',
+        //     'capaian' => 'required|max:255',
+        //     'lingkup' => 'required|max:255',
+        //     'peserta' => 'required|max:255',
+        //     'kegiatan' => 'required|max:255',
+        //     'link' => 'required|max:255',
+        //     'tglkegiatan' => 'required|max:255',
+        //     'file-bukti' => 'required|mimetypes:application/pdf|max:10000'
+        // ]);
 
-        $data = [
-            'user_id' => $userid,
-            'bidang' => $request->bidang,
-            'capaian' => $request->capaian,
-            'lingkup' => $request->lingkup,
-            'jumlah_peserta' => $request->peserta,
-            'nama_kegiatan' => $request->kegiatan,
-            'tanggal_kegiatan' => $request->tglkegiatan
-        ];
+        // $data = [
+        //     'user_id' => $userid,
+        //     'semester' => $request->semester,
+        //     'bidang' => $request->bidang,
+        //     'capaian' => $request->capaian,
+        //     'lingkup' => $request->lingkup,
+        //     'jumlah_peserta' => $request->peserta,
+        //     'nama_kegiatan' => $request->kegiatan,
+        //     'link' => $request->link,
+        //     'tanggal_kegiatan' => $request->tglkegiatan
+        // ];
 
-        if ($request->hasFile('file-bukti') && $request->file('file-bukti')->isValid()) {
-            $path = "file-bukti";
-            $oldfile = $path . basename($Activity->avatar);
-            Storage::disk('public')->delete($oldfile);
-            $data['bukti'] = Storage::disk('public')->put($path, $request->file('file-bukti'));
-        }
+        // if ($request->hasFile('file-bukti') && $request->file('file-bukti')->isValid()) {
+        //     $path = "file-bukti/";
+        //     $oldfile = $path.basename($Activity->bukti);
+        //     Storage::disk('public')->delete($oldfile);
+        //     $data['bukti'] = Storage::disk('public')->put($path, $request->file('file-bukti'));
+        // }
 
-        $Activity->update($data);
+        // $Activity->update($data);
 
-        return redirect('activityreport/'.$id.'/edit')->with('toast', 'showToast("Data berhasil diupdate")');
+        // return redirect('activityreport/'.$id.'/edit')->with('toast', 'showToast("Data berhasil diupdate")');
     }
 
     /**
@@ -136,6 +144,9 @@ class ActivityController extends Controller
     public function destroy(string $id)
     {
         $Activity = Activity::findOrFail($id);
+        $path = "file-bukti/";
+        $oldfile = $path.basename($Activity->bukti);
+        Storage::disk('public')->delete($oldfile);
         $Activity->delete();
 
         return redirect()->back()->with('toast', 'showToast("Data berhasil dihapus")');

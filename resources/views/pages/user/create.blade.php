@@ -41,7 +41,7 @@
                                 <div class="col-sm-9">
                                     <select name="role" id="role" class="form-control text-capitalize @error('role') is-invalid @enderror">
                                         <option value="mahasiswa">mahasiswa</option>
-                                        <option value="tim_psikolog">tim_psikolog</option>
+                                        <option value="timpsikolog">tim psikolog</option>
                                         <option value="validator">validator</option>
                                         <option value="pimpinan">pimpinan</option>
                                         <option value="superadmin">superadmin</option>

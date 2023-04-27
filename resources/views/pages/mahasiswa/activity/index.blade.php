@@ -6,10 +6,10 @@
 @section('content')
     <div class="card">
         <div class="card-header">
-            <h4>User List</h4>
+            <h4>Activity Report List</h4>
             <div class="card-header-action">
                 <a href="{{ route('activityreport-create') }}" class="btn btn-primary">
-                    <i class="fa fa-plus"></i>
+                    <i class="fa fa-plus mr-1"></i>
                     Add New
                 </a>
             </div>
@@ -31,12 +31,15 @@
                             <th>Uang Saku Satu Bulan</th>
                             <th>Index Prestasi</th>
                             <th>Index Prestasi Kumulatif</th>  --}}
-                            <th>Bidang</th>
-                            <th>Capaian</th>
-                            <th>Lingkup</th>
-                            <th>Jumlah_peserta</th>
-                            <th>Nama_kegiatan</th>
-                            <th>Bukti</th>
+                            <th>Semester (Saat Ikut Kegiatan)</th>
+                            <th>Bidang kegiatan</th>
+                            <th>Capaian Kegiatan</th>
+                            <th>Lingkup Kegiatan</th>
+                            <th>Jumlah Peserta</th>
+                            <th>Nama Kegiatan</th>
+                            <th>Tanggal Kegiatan</th>
+                            <th>Bukti Kegiatan</th>
+                            <th>Link Kegiatan</th>
                             <th>Status</th>
                         </tr>
                     </thead>
@@ -77,54 +80,44 @@
             {data:'uang_saku_satu_bulan',name:'uang_saku_satu_perbulan'},
             {data:'index_prestasi',name:'index_prestasi'},
             {data:'index_prestasi_kumulatif',name:'index_prestasi_kumulatif'},*/
+            {data:'semester',name:'semester'},
             {data:'bidang',name:'bidang'},
             {data:'capaian',name:'capaian'},
             {data:'lingkup',name:'lingkup'},
             {data:'jumlah_peserta',name:'jumlah_peserta'},
             {data:'nama_kegiatan',name:'nama_kegiatan'},
+            {data:'tanggal_kegiatan',name:'tanggal_kegiatan'},
             {data:'bukti',name:'bukti'},
+            {data:'link',name:'link'},
             {data:'status',name:'status'}
             ],
             columnDefs: [{
-                "targets": 6,
+                "targets": 8,
                 "render": function(data, type, row, meta) {
                     let link = ``;
                     if(data) {
                         link = `storage/${data}`;
                     }
 
-                    return `<a href="{{ asset('/') }}${link}">File Bukti</a>`;
+                    return `<a href="{{ asset('/') }}${link}" target="_blank">Detail Bukti</a>`;
                 }
             },{
-                "targets": 1,
+                "targets": 9,
                 "render": function(data, type, row, meta) {
-                    return `
-                        ${data}
-                        <form action="{{ url('/activityreport') }}/${row.id}" method="POST" class="table-links">
-                            @method('DELETE')
-                            @csrf
-                            <a
-                                href="{{ url('/activityreport') }}/${row.id}/edit"
-                                class="btn btn-sm"
-                            >
-                                Edit
-                            </a>
-                            <button
-                                type="submit"
-                                class="text-danger btn-delete btn btn-sm"
-                            >
-                                Delete
-                            </button>
-                        </form>
-                    `;
+                    let link2 = ``;
+                    if(data) {
+                        link2 = `${data}`;
+                    }
+
+                    return `<a href="${link2}" target="_blank">Link Kegiatan ${row.nama_kegiatan[0].toUpperCase() + row.nama_kegiatan.slice(1)}</a>`;
                 }
             },{
                 "targets": -1,
                 "render": function(data, type, row, meta) {
                     if(data=="allow"){
-                        return `<div class="badge badge-success">Verified</div>`;
+                        return `<div class="badge badge-success">Verifikasi</div>`;
                     } else {
-                        return `<div class="badge badge-danger">Unverified</div>`;
+                        return `<div class="badge badge-danger">Belum Diverifikasi</div>`;
                     }
                 }
             }],

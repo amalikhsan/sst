@@ -18,13 +18,13 @@
                         </div>
 
                         <div class="card-body">
-                            <p class="text-muted">We will send a link to reset your password</p>
+                            <p class="text-muted">Sekarang anda bisa reset password</p>
                             <form method="POST" action="{{ route('password.update') }}">
                                 @csrf
                                 <input type="hidden" name="token" value="{{ request()->token }}">
                                 <input type="hidden" name="email" value="{{ request()->email }}">
                                 <div class="form-group">
-                                    <label for="password" class="d-block">New Password</label>
+                                    <label for="password" class="d-block">Password Baru</label>
                                     <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password">
                                     @error('password')
                                         <div class="invalid-feedback">
@@ -33,7 +33,7 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label for="password_confirmation" class="d-block">Password Confirmation</label>
+                                    <label for="password_confirmation" class="d-block">Konfirmasi Password</label>
                                     <input id="password_confirmation" type="password" class="form-control @error('password_confirmation') is-invalid @enderror" name="password_confirmation">
                                     @error('password_confirmation')
                                         <div class="invalid-feedback">
@@ -50,7 +50,7 @@
                         </div>
                     </div>
                     <div class="simple-footer">
-                        Copyright {{ date('Y') }} &copy; {{ env('APP_NAME') }}
+                        Copyright {{ date('Y') }} &copy; {{ env('APP_NAME') }} <div class="bullet"></div> Code by <a href="https://instagram.com/mamalikhsani">M. Amal Ikhsani</a>
                     </div>
                 </div>
             </div>

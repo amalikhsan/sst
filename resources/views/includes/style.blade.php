@@ -8,6 +8,7 @@
 
 <!-- Template CSS -->
 <link rel="stylesheet" href="{{ asset('/assets/css/style.css') }}">
+<link rel="stylesheet" href="{{ asset('/assets/css/customs.css') }}">
 <link rel="stylesheet" href="{{ asset('/assets/css/components.css') }}">
 
 <!-- Custom CSS -->
@@ -19,5 +20,6 @@
 
 <!-- Icon -->
 <link rel="shortcut icon" href="{{ asset('/assets/img/favicon.ico') }}">
+
 
 

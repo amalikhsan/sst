@@ -15,7 +15,12 @@ class InterViewController extends Controller
      */
     public function index()
     {
-        return view('pages.interview.index');
+        $item = InterView::with('user')->get();
+        $item2 = InterView::with('user')->where('user_id',auth()->user()->id)->first();
+        return view('pages.mahasiswa.interview.index',[
+            'item' => $item,
+            'item2'=>$item2
+        ]);
     }
 
     /**
@@ -23,7 +28,7 @@ class InterViewController extends Controller
      */
     public function create()
     {
-        return view('pages.interview.create');
+        return view('pages.mahasiswa.interview.create');
     }
 
     /**
@@ -34,32 +39,22 @@ class InterViewController extends Controller
         $userid = auth()->user()->id;
 
         $request->validate([
-            'bidang' => 'required|max:255',
-            'capaian' => 'required|max:255',
-            'lingkup' => 'required|max:255',
-            'peserta' => 'required|max:255',
-            'kegiatan' => 'required|max:255',
-            'tglkegiatan' => 'required|max:255',
-            'file-bukti' => 'required|mimetypes:application/pdf|max:10000'
+            'tanggal' => 'required|date|max:255'
         ]);
+
+        $res = InterView::with('user')->where('tanggal_wawancara', $request->tanggal)->get();
+        if($res->count()>=20){
+            return redirect('interview')->with('toast', 'showToast2("Kuota pennuh, cari tanggal lain")');
+        }
 
         $data = [
             'user_id' => $userid,
-            'bidang' => $request->bidang,
-            'capaian' => $request->capaian,
-            'lingkup' => $request->lingkup,
-            'jumlah_peserta' => $request->peserta,
-            'nama_kegiatan' => $request->kegiatan,
-            'tanggal_kegiatan' => $request->tglkegiatan
+            'tanggal_wawancara' => $request->tanggal
         ];
-
-        if ($request->hasFile('file-bukti')) {
-            $data['bukti'] = $request->file('file-bukti')->store('file-bukti', 'public');
-        }
 
         InterView::create($data);
 
-        return redirect('interview-create')->with('toast', 'showToast("Data berhasil disimpan")');
+        return redirect('interview')->with('toast', 'showToast("Data berhasil disimpan")');
     }
 
     /**
@@ -75,11 +70,11 @@ class InterViewController extends Controller
      */
     public function edit(string $id)
     {
-        $item = InterView::findOrFail($id);
+        // $item = InterView::findOrFail($id);
 
-        return view('pages.interview.edit', [
-            'item'  =>  $item
-        ]);
+        // return view('pages.mahasiswa.interview.edit', [
+        //     'item'  =>  $item
+        // ]);
     }
 
     /**
@@ -87,40 +82,7 @@ class InterViewController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $interview = InterView::findOrFail($id);
-
-        $userid = auth()->user()->id;
-
-        $request->validate([
-            'bidang' => 'required|max:255',
-            'capaian' => 'required|max:255',
-            'lingkup' => 'required|max:255',
-            'peserta' => 'required|max:255',
-            'kegiatan' => 'required|max:255',
-            'tglkegiatan' => 'required|max:255',
-            'file-bukti' => 'required|mimetypes:application/pdf|max:10000'
-        ]);
-
-        $data = [
-            'user_id' => $userid,
-            'bidang' => $request->bidang,
-            'capaian' => $request->capaian,
-            'lingkup' => $request->lingkup,
-            'jumlah_peserta' => $request->peserta,
-            'nama_kegiatan' => $request->kegiatan,
-            'tanggal_kegiatan' => $request->tglkegiatan
-        ];
-
-        if ($request->hasFile('file-bukti') && $request->file('file-bukti')->isValid()) {
-            $path = "file-bukti";
-            $oldfile = $path . basename($interview->avatar);
-            Storage::disk('public')->delete($oldfile);
-            $data['bukti'] = Storage::disk('public')->put($path, $request->file('file-bukti'));
-        }
-
-        $interview->update($data);
-
-        return redirect('interview/' . $id . '/edit')->with('toast', 'showToast("Data berhasil diupdate")');
+        // 
     }
 
     /**
@@ -128,9 +90,9 @@ class InterViewController extends Controller
      */
     public function destroy(string $id)
     {
-        $interview = InterView::findOrFail($id);
-        $interview->delete();
+        // $interview = InterView::findOrFail($id);
+        // $interview->delete();
 
-        return redirect()->back()->with('toast', 'showToast("Data berhasil dihapus")');
+        // return redirect()->back()->with('toast', 'showToast("Data berhasil dihapus")');
     }
 }

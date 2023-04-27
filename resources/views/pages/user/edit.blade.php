@@ -41,7 +41,7 @@
                                 <div class="col-sm-9">
                                     <select name="role" id="role" class="form-control text-capitalize @error('role') is-invalid @enderror">
                                         <option value="mahasiswa" {{ $item->role=="mahasiswa"?'selected':'' }}>mahasiswa</option>
-                                        <option value="tim_psikolog" {{ $item->role=="tim_psikolog"?'selected':'' }}>tim_psikolog</option>
+                                        <option value="timpsikolog" {{ $item->role=="timpsikolog"?'selected':'' }}>tim psikolog</option>
                                         <option value="validator" {{ $item->role=="validator"?'selected':'' }}>validator</option>
                                         <option value="pimpinan" {{ $item->role=="pimpinan"?'selected':'' }}>pimpinan</option>
                                         <option value="superadmin" {{ $item->role=="superadmin"?'selected':'' }}>superadmin</option>

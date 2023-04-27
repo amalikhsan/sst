@@ -21,8 +21,8 @@ return new class extends Migration
             $table->string('beasiswa');
             $table->string('pendapatan_orangtua');
             $table->string('uang_saku_satu_bulan');
-            $table->string('index_prestasi');
-            $table->string('index_prestasi_kumulatif');
+            $table->string('index_prestasi')->nullable();
+            $table->string('index_prestasi_kumulatif')->nullable();
             $table->enum('status', ['allow', 'deny'])->nullable()->default('deny');
             $table->timestamps();
         });

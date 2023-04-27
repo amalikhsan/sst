@@ -11,10 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('inter_views', function (Blueprint $table) {
+        Schema::create('self_assessment_jobs', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained('users');
-            $table->date('tanggal_wawancara');
+            $table->string('kategori');
+            $table->string('variabel');
+            $table->string('item');
+            $table->string('kode');
             $table->timestamps();
         });
     }
@@ -24,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('inter_views');
+        Schema::dropIfExists('self_assessment_jobs');
     }
 };

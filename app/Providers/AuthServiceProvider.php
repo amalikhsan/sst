@@ -12,7 +12,7 @@ class AuthServiceProvider extends ServiceProvider
 {
     private static $permissions = [
         'mahasiswa' => ['mahasiswa'],
-        'tim_psikolog' => ['tim_psikolog'],
+        'timpsikolog' => ['timpsikolog'],
         'validator' => ['validator'],
         'pimpinan' => ['pimpinan'],
         'superadmin' => ['superadmin']
@@ -33,9 +33,9 @@ class AuthServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Gate::before(function(User $user) {
-            if($user->role === 'superadmin') {
-                return true;
-            }
+            // if($user->role === 'superadmin') {
+            //     return true;
+            // }
         });
 
         foreach(self::$permissions as $action => $roles) {

@@ -13,15 +13,15 @@
                     </div>
                     @if (session('status') == 'verification-link-sent')
                         <div class="mb-4 alert alert-success">
-                            Email yang baru telah dikirim ke emailmu.
+                            Email yang baru telah dikirim ke emailmu
                         </div>
                     @endif
                     <div class="card card-primary">
                         <div class="card-header justify-content-center">
-                            <h4>Emailmu tidak terdaftar.</h4>
+                            <h4>Emailmu tidak terdaftar</h4>
                         </div>
                         <div class="card-body">
-                            <p>Cek emailmulalu tekan link email verifikasi.</p>
+                            <p>Cek email anda setelah menekan tombol di bawah ini</p>
                             <div class="form-group">
                                 <form action="{{ route('verification.send') }}" method="POST">
                                     @csrf
@@ -33,7 +33,7 @@
                         </div>
                     </div>
                     <div class="simple-footer">
-                        Copyright {{ date('Y') }} &copy; {{ env('APP_NAME') }}
+                        Copyright {{ date('Y') }} &copy; {{ env('APP_NAME') }} <div class="bullet"></div> Code by <a href="https://instagram.com/mamalikhsani">M. Amal Ikhsani</a>
                     </div>
                 </div>
             </div>

@@ -26,7 +26,7 @@ class DashboardController extends Controller
         $user = User::findOrFail(auth()->user()->id);
 
         if($request->hasFile('avatar') && $request->file('avatar')->isValid()){
-            $path = "avatar";
+            $path = "avatar/";
             $oldfile = $path.basename($user->avatar);
             Storage::disk('public')->delete($oldfile);
             $data['avatar'] = Storage::disk('public')->put($path, $request->file('avatar'));
@@ -41,7 +41,7 @@ class DashboardController extends Controller
     {
         $user = User::findOrFail(auth()->user()->id);
 
-        $path = "avatar";
+        $path = "avatar/";
         $oldfile = $path.basename($user->avatar);
         Storage::disk('public')->delete($oldfile);
         $data['avatar'] = NULL;

@@ -21,7 +21,7 @@
                             <h4>Forgot Password</h4>
                         </div>
                         <div class="card-body">
-                            <p class="text-muted">We will send a link to reset your password</p>
+                            <p class="text-muted">Kami akan mengirim link ke email kamu untuk melakukan reset password</p>
                             <form method="POST" action="{{ route('password.email') }}">
                                 @csrf
                                 <div class="form-group">
@@ -49,7 +49,7 @@
                         </div>
                     </div>
                     <div class="simple-footer">
-                        Copyright {{ date('Y') }} &copy; {{ env('APP_NAME') }}
+                        Copyright {{ date('Y') }} &copy; {{ env('APP_NAME') }} <div class="bullet"></div> Code by <a href="https://instagram.com/mamalikhsani">M. Amal Ikhsani</a>
                     </div>
                 </div>
             </div>

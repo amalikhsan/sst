@@ -20,8 +20,8 @@
                     <thead>
                         <tr>
                             <th>No</th>
-                            <th>Photo</th>
-                            <th>Name</th>
+                            <th>Foto</th>
+                            <th>Nama Lengkap</th>
                             <th>Email</th>
                             <th>Username</th>
                             <th>Role</th>
@@ -98,9 +98,9 @@
                 "targets": -1,
                 "render": function(data, type, row, meta) {
                     if(data){
-                        return `<div class="badge badge-success">Verified</div>`;
+                        return `<div class="badge badge-success">Verifikasi</div>`;
                     } else {
-                        return `<div class="badge badge-danger">Unverified</div>`;
+                        return `<div class="badge badge-danger">Belum Diverifikasi</div>`;
                     }
                 }
             }],

@@ -122,9 +122,9 @@
                 "targets": -1,
                 "render": function(data, type, row, meta) {
                     if(data=="allow"){
-                        return `<div class="badge badge-success">Verified</div>`;
+                        return `<div class="badge badge-success">Verifikasi</div>`;
                     } else {
-                        return `<div class="badge badge-danger">Unverified</div>`;
+                        return `<div class="badge badge-danger">Belum Diverifikasi</div>`;
                     }
                 }
             }],

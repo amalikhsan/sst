@@ -15,7 +15,7 @@
                 </div>
                 <div class="card-body">
                     <div class="form-group">
-                        <label>Full Name (Nama Lengkap)</label>
+                        <label>Nama Lengkap</label>
                         <input type="text" id="name" name="name" class="form-control @error('name','updateProfileInformation') is-invalid @enderror" value="{{ old('name', auth()->user()->name) }}">
                         @error('name', 'updateProfileInformation')
                             <div class="invalid-feedback">
@@ -58,7 +58,7 @@
                 </div>
                 <div class="card-body">
                     <div class="form-group">
-                        <label for="current_password" class="d-block">Current Password</label>
+                        <label for="current_password" class="d-block">Password Sekarang</label>
                         <input id="current_password" type="password" class="form-control @error('current_password', 'updatePassword') is-invalid @enderror" name="current_password">
                         @error('current_password', 'updatePassword')
                             <div class="invalid-feedback">
@@ -67,7 +67,7 @@
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label for="password" class="d-block">New Password</label>
+                        <label for="password" class="d-block">Password Baru</label>
                         <input id="password" type="password" class="form-control @error('password', 'updatePassword') is-invalid @enderror" name="password">
                         @error('password', 'updatePassword')
                             <div class="invalid-feedback">
@@ -76,7 +76,7 @@
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label for="password_confirmation" class="d-block">Password Confirmation</label>
+                        <label for="password_confirmation" class="d-block">Konfirmasi Password</label>
                         <input id="password_confirmation" type="password" class="form-control @error('password_confirmation', 'updatePassword') is-invalid @enderror" name="password_confirmation">
                         @error('password_confirmation', 'updatePassword')
                             <div class="invalid-feedback">
