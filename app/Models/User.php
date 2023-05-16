@@ -8,6 +8,7 @@ use App\Models\Activity;
 use App\Models\InterView;
 use App\Models\SelfAssessment;
 use App\Models\StudentProfile;
+use App\Models\SelfAssessmentTwo;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -56,6 +57,11 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasOne(SelfAssessment::class);
     }
 
+    public function selfassessmenttwo()
+    {
+        return $this->hasOne(SelfAssessmentTwo::class);
+    }
+
     public function interview()
     {
         return $this->hasOne(InterView::class);
@@ -68,7 +74,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function activity()
     {
-        return $this->hasOne(Activity::class);
+        return $this->hasMany(Activity::class);
     }
 
 }

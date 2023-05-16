@@ -5,7 +5,7 @@
 
 @section('content')
 <div class="card">
-    <form action="{{ route('activityreport-store') }}" method="POST" class="needs-validation" autocomplete="off" enctype="multipart/form-data">
+    <form action="{{ route('activityreport/store') }}" method="POST" class="needs-validation" autocomplete="off" enctype="multipart/form-data">
         @method('POST')
         @csrf
         <div class="card-header">
@@ -36,7 +36,7 @@
                 <select name="bidang" class="form-control  @error('bidang') is-invalid @enderror" id="bidang">
                     <option value="">Pilih Bidang</option>
                     <option value="Kompetisi">Kompetisi</option>
-                    <option value="Rekognisi">Rekognisi</option>
+                    <option value="Rekognisi/ Pengakuan">Rekognisi/ Pengakuan</option>
                     <option value="Penghargaan">Penghargaan</option>
                     <option value="Organisasi">Organisasi</option>
                     <option value="Hasil Karya">Hasil Karya</option>
@@ -62,7 +62,7 @@
                     <option class="d-none" value="Harapan 2 Perorangan" id="satu">Harapan 2 Perorangan</option>
                     <option class="d-none" value="Harapan 3 Perorangan" id="satu">Harapan 3 Perorangan</option>
 
-                    <option class="d-none" value="Peserta terfavorit Perorangan" id="satu">Peserta terfavorit Perorangan</option>
+                    <option class="d-none" value="Apresiasi Kejuaran Perorangan (Misal: Peserta terfavorit)" id="satu">Apresiasi Kejuaran Perorangan (Misal: Peserta terfavorit)</option>
 
                     <option class="d-none" value="Peserta Perorangan (non pemenang)" id="satu">Peserta Perorangan (non pemenang)</option>
 
@@ -74,22 +74,13 @@
                     <option class="d-none" value="Harapan 2 Beregu" id="satu">Harapan 2 Beregu</option>
                     <option class="d-none" value="Harapan 3 Beregu" id="satu">Harapan 3 Beregu</option>
 
-                    <option class="d-none" value="Peserta terfavorit Beregu" id="satu">Peserta terfavorit Beregu</option>
+                    <option class="d-none" value="Apresiasi Kejuaran Beregu (Misal: Peserta terfavorit)" id="satu">Apresiasi Kejuaran Beregu (Misal: Peserta terfavorit)</option>
 
                     <option class="d-none" value="Peserta Beregu (non pemenang)" id="satu">Peserta Beregu (non pemenang)</option>
 
-                    <option class="d-none" value="Juri" id="dua">Juri</option>
-
-                    <option class="d-none" value="Pelatih" id="dua">Pelatih</option>
-                    <option class="d-none" value="Wasit" id="dua">Wasit</option>
-                    <option class="d-none" value="Nara sumber" id="dua">Nara sumber</option>
-                    <option class="d-none" value="Pembicara" id="dua">Pembicara</option>
-                    <option class="d-none" value="Moderator" id="dua">Moderator</option>
-
-                    <option class="d-none" value="Diksarlin" id="dua">Diksarlin</option>
-                    <option class="d-none" value="Seminar" id="dua">Seminar</option>
-                    <option class="d-none" value="Webinar" id="dua">Webinar</option>
-                    <option class="d-none" value="Workshop" id="dua">Workshop</option>
+                    <option class="d-none" value="Juri/Pelatih/Wasit" id="dua">Juri/Pelatih/Wasit</option>
+                    <option class="d-none" value="Narasumber/pembicara/moderator" id="dua">Nara sumber/pembicara/moderator</option>
+                    <option class="d-none" value="Peserta Kegiatan (Diksarlin, Seminar, webinar, workshop, dan sejenisnya)" id="dua">Peserta Kegiatan (Diksarlin, Seminar, webinar, workshop, dan sejenisnya)</option>
 
                     <option class="d-none" value="Medali Emas Perorangan" id="tiga">Medali Emas Perorangan</option>
                     <option class="d-none" value="Medali Perak Perorangan" id="tiga">Medali Perak Perorangan</option>
@@ -104,9 +95,7 @@
                     <option class="d-none" value="Bendahara" id="empat">Bendahara</option>
                     <option class="d-none" value="Anggota" id="empat">Anggota</option>
 
-                    <option class="d-none" value="Paten" id="lima">Paten</option>
-                    <option class="d-none" value="Merek yang HaKi kan" id="lima">Merek yang HaKi kan</option>
-
+                    <option class="d-none" value="Paten/ Merek yang HaKi kan" id="lima">Paten/ Merek yang HaKi kan</option>
                     <option class="d-none" value="Cipta Karya Original" id="lima">Cipta Karya Original</option>
 
                     <option class="d-none" value="Buku ber-ISBN"  id="lima">Buku ber-ISBN</option>
@@ -133,7 +122,7 @@
                     <option value="">Pilih Lingkup</option>
                     <option class="d-none" value="Internal" id="lingkupan">Internal</option>
                     <option class="d-none" value="Nasional" id="lingkupan">Nasional</option>
-                    <option class="d-none" value="Regional" id="lingkupan">Regional</option>
+                    <option class="d-none" value="Regional/Provinsi" id="lingkupan">Regional/Provinsi</option>
                     <option class="d-none" value="Internasional" id="lingkupan">Internasional</option>
                 </select>
                 @error('lingkup')
@@ -144,7 +133,11 @@
             </div>
             <div class="form-group">
                 <label class="form-label" for="peserta">Jumlah Peserta Kegiatan</label>
-                <input type="number" id="peserta" name="peserta" class="form-control @error('peserta') is-invalid @enderror"  value="{{ old('peserta') }}" placeholder="Masukkan Jumlah Peserta">
+                <select name="peserta" class="form-control  @error('peserta') is-invalid @enderror">
+                    <option value="">Pilih Jumlah Peserta</option>
+                    <option value="< 10">< 10</option>
+                    <option value=">= 10">>= 10</option>
+                </select>
                 @error('peserta')
                     <div class="invalid-feedback">
                         {{ $message }}

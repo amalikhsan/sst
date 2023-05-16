@@ -1,14 +1,14 @@
 @extends('layouts.app')
 
-@section('title', 'Manage Users')
-@section('desc', ' Kelola Pengguna. ')
+@section('title', 'Interview Quota')
+@section('desc', ' Kuota Wawancara. ')
 
 @section('content')
     <div class="card">
         <div class="card-header">
-            <h4>User List</h4>
+            <h4>Quota List</h4>
             <div class="card-header-action">
-                <a href="{{ route('user.create') }}" class="btn btn-primary">
+                <a href="{{ route('interviewquota/create') }}" class="btn btn-primary">
                     <i class="fa fa-plus"></i>
                     Add New
                 </a>
@@ -20,12 +20,7 @@
                     <thead>
                         <tr>
                             <th>No</th>
-                            <th>Foto</th>
-                            <th>Nama Lengkap</th>
-                            <th>Email</th>
-                            <th>Username</th>
-                            <th>Role</th>
-                            <th>Status</th>
+                            <th>Quota</th>
                         </tr>
                     </thead>
                 </table>
@@ -54,33 +49,18 @@
             ],
             columns: [
                 {data: 'id', name: 'id'},
-                {data: 'avatar', name: 'avatar'},
-                {data: 'name', name: 'name'},
-                {data: 'email', name: 'username'},
-                {data: 'username', name: 'username'},
-                {data: 'role', name: 'role'},
-                {data: 'email_verified_at', name: 'email_verified_at'},
+                {data: 'quota', name: 'quota'}
             ],
-            columnDefs: [{
+            columnDefs:[{
                 "targets": 1,
-                "render": function(data, type, row, meta) {
-                    let img = `assets/img/avatar/avatar-5.png`;
-                    if(data) {
-                        img = `storage/${data}`;
-                    }
-
-                    return `<img alt="image" src="{{ asset('/') }}${img}" class="rounded-circle" width="35">`;
-                }
-            },{
-                "targets": 2,
                 "render": function(data, type, row, meta) {
                     return `
                         ${data}
-                        <form action="{{ url('/user') }}/${row.id}" method="POST" class="table-links">
+                        <form action="{{ url('/interviewquota') }}/${row.id}" method="POST" class="table-links">
                             @method('DELETE')
                             @csrf
                             <a
-                                href="{{ url('/user') }}/${row.id}/edit"
+                                href="{{ url('/interviewquota') }}/${row.id}/edit"
                                 class="btn btn-sm"
                             >
                                 Edit
@@ -93,15 +73,6 @@
                             </button>
                         </form>
                     `;
-                }
-            },{
-                "targets": -1,
-                "render": function(data, type, row, meta) {
-                    if(data){
-                        return `<div class="badge badge-success">Verifikasi</div>`;
-                    } else {
-                        return `<div class="badge badge-danger">Belum Diverifikasi</div>`;
-                    }
                 }
             }],
             rowId: function(a) {

@@ -55,11 +55,12 @@
 </div>
 @else
 <div class="card">
-    <form action="{{ route('studentprofile-update',$item->id) }}" method="POST" class="mb-2">
+    <form action="{{ route('studentprofile/update',$item->id) }}" method="POST" class="mb-2">
         @method('PUT')
         @csrf
         <div class="card-header">
             <h4>Profile</h4>
+            <p class="text-danger mb-0">Bagi Mahasiswa Yang Belum Punya IP, Jangan Simpan Permanen*</p>
         </div>
         <div class="card-body">
             <div class="form-group">
@@ -227,11 +228,12 @@
 @endif
 @else
 <div class="card">
-    <form action="{{ route('studentprofile-store') }}" method="POST" class="mb-2">
+    <form action="{{ route('studentprofile/store') }}" method="POST" class="mb-2">
         @method('POST')
         @csrf
         <div class="card-header">
             <h4>Profile</h4>
+            <p class="text-danger mb-0">Bagi Mahasiswa Yang Belum Punya IP, Jangan Simpan Permanen*</p>
         </div>
         <div class="card-body">
             <div class="form-group">

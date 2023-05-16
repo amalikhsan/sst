@@ -70,7 +70,7 @@ class ActivityController extends Controller
 
         Activity::create($data);
 
-        return redirect('activityreport-create')->with('toast', 'showToast("Data berhasil disimpan")');
+        return redirect('activityreport')->with('toast', 'showToast("Data berhasil disimpan")');
     }
 
     /**

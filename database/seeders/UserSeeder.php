@@ -123,12 +123,12 @@ class UserSeeder extends Seeder
         ]);
 
         User::factory()->create([
-            'name' => 'verifikator',
-            'email' => 'verifikator@gmail.com',
+            'name' => 'validator',
+            'email' => 'validator@gmail.com',
             'email_verified_at' => now(),
             'role' => 'validator',
             'username' => 'validator',
-            'password' => Hash::make('verifikator'),
+            'password' => Hash::make('validator'),
         ]);
 
         User::factory()->create([

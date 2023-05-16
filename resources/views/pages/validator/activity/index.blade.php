@@ -6,13 +6,7 @@
 @section('content')
     <div class="card">
         <div class="card-header">
-            <h4>User List</h4>
-            <div class="card-header-action">
-                <a href="{{ route('activityreport-create') }}" class="btn btn-primary">
-                    <i class="fa fa-plus"></i>
-                    Add New
-                </a>
-            </div>
+            <h4>Activity Report List</h4>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -20,24 +14,18 @@
                     <thead>
                         <tr>
                             <th>No</th>
-                            {{--  <th>Nama Lengkap</th>
-                            <th>NPM</th>
-                            <th>Jurusan</th>
-                            <th>Program Studi</th>
-                            <th>Jalur Masuk</th>
-                            <th>Semester/Angkatan</th>
-                            <th>Beasiswa</th>
-                            <th>Pendapatan Orang Tua</th>
-                            <th>Uang Saku Satu Bulan</th>
-                            <th>Index Prestasi</th>
-                            <th>Index Prestasi Kumulatif</th>  --}}
-                            <th>Bidang</th>
-                            <th>Capaian</th>
-                            <th>Lingkup</th>
-                            <th>Jumlah_peserta</th>
-                            <th>Nama_kegiatan</th>
-                            <th>Bukti</th>
+                            <th>Nama</th>
+                            <th>Semester (Saat Ikut Kegiatan)</th>
+                            <th>Bidang kegiatan</th>
+                            <th>Capaian Kegiatan</th>
+                            <th>Lingkup Kegiatan</th>
+                            <th>Jumlah Peserta</th>
+                            <th>Nama Kegiatan</th>
+                            <th>Tanggal Kegiatan</th>
+                            <th>Bukti Kegiatan</th>
+                            <th>Link Kegiatan</th>
                             <th>Status</th>
+                            <th>Score</th>
                         </tr>
                     </thead>
                 </table>
@@ -66,66 +54,62 @@
             ],
             columns: [
                 {data: 'id', name: 'id'},
-               /*{data:'nama_lengkap',name:'nama_lengkap'},
-            {data:'npm',name:'npm'},
-            {data:'jurusan',name:'jurusan'},
-            {data:'prodi',name:'prodi'},
-            {data:'jalur_masuk',name:'jalur_masuk'},
+                {data: 'name', name: 'name'},
             {data:'semester',name:'semester'},
-            {data:'beasiswa',name:'beasiswa'},
-            {data:'pendapatan_orangtua',name:'pendapatan_orangtua'},
-            {data:'uang_saku_satu_bulan',name:'uang_saku_satu_perbulan'},
-            {data:'index_prestasi',name:'index_prestasi'},
-            {data:'index_prestasi_kumulatif',name:'index_prestasi_kumulatif'},*/
             {data:'bidang',name:'bidang'},
             {data:'capaian',name:'capaian'},
             {data:'lingkup',name:'lingkup'},
             {data:'jumlah_peserta',name:'jumlah_peserta'},
             {data:'nama_kegiatan',name:'nama_kegiatan'},
+            {data:'tanggal_kegiatan',name:'tanggal_kegiatan'},
             {data:'bukti',name:'bukti'},
-            {data:'status',name:'status'}
+            {data:'link',name:'link'},
+            {data:'status',name:'status'},
+            {data:'score',name:'score'}
             ],
             columnDefs: [{
-                "targets": 6,
+                "targets": 9,
                 "render": function(data, type, row, meta) {
                     let link = ``;
                     if(data) {
                         link = `storage/${data}`;
                     }
 
-                    return `<a href="{{ asset('/') }}${link}">File Bukti</a>`;
+                    return `<a href="{{ asset('/') }}${link}" target="_blank">Detail Bukti</a>`;
                 }
             },{
-                "targets": 1,
+                "targets": 10,
                 "render": function(data, type, row, meta) {
-                    return `
-                        ${data}
-                        <form action="{{ url('/activityreport') }}/${row.id}" method="POST" class="table-links">
-                            @method('DELETE')
-                            @csrf
-                            <a
-                                href="{{ url('/activityreport') }}/${row.id}/edit"
-                                class="btn btn-sm"
-                            >
-                                Edit
-                            </a>
-                            <button
-                                type="submit"
-                                class="text-danger btn-delete btn btn-sm"
-                            >
-                                Delete
-                            </button>
-                        </form>
-                    `;
+                    let link2 = ``;
+                    if(data) {
+                        link2 = `${data}`;
+                    }
+
+                    return `<a href="${link2}" target="_blank">Link Kegiatan ${row.nama_kegiatan[0].toUpperCase() + row.nama_kegiatan.slice(1)}</a>`;
                 }
             },{
-                "targets": -1,
+                "targets": -2,
                 "render": function(data, type, row, meta) {
                     if(data=="allow"){
                         return `<div class="badge badge-success">Verifikasi</div>`;
                     } else {
                         return `<div class="badge badge-danger">Belum Diverifikasi</div>`;
                     }
+                }
+            },{
+                "targets": 2,
+                "render": function(data, type, row, meta) {
+                    return `
+                        ${data}
+                        <div class="table-links">
+                            <a
+                                href="{{ url('/activityreport-validator') }}/${row.id}/edit"
+                                class="btn btn-sm"
+                            >
+                                Edit Status
+                            </a>
+                        </div>
+                    `;
                 }
             }],
             rowId: function(a) {

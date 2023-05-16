@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Activity;
 use App\Models\InterView;
 use Illuminate\Http\Request;
+use App\Models\InterviewQuota;
+use App\Models\StudentProfile;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Yajra\DataTables\Facades\DataTables;
@@ -15,11 +18,15 @@ class InterViewController extends Controller
      */
     public function index()
     {
+        $cek = Activity::with('user')->where('user_id', auth()->user()->id)->first();
+        $cek2 = StudentProfile::with('user')->where('user_id', auth()->user()->id)->first();
         $item = InterView::with('user')->get();
         $item2 = InterView::with('user')->where('user_id',auth()->user()->id)->first();
         return view('pages.mahasiswa.interview.index',[
             'item' => $item,
-            'item2'=>$item2
+            'item2'=>$item2,
+            'cek'=>$cek,
+            'cek2'=>$cek2
         ]);
     }
 
@@ -43,8 +50,15 @@ class InterViewController extends Controller
         ]);
 
         $res = InterView::with('user')->where('tanggal_wawancara', $request->tanggal)->get();
-        if($res->count()>=20){
-            return redirect('interview')->with('toast', 'showToast2("Kuota pennuh, cari tanggal lain")');
+        $quota = InterViewQuota::first();
+        if($quota){
+            if ($res->count() >= $quota->quota) {
+                return redirect('interview')->with('toast', 'showToast2("Kuota pennuh, cari tanggal lain")');
+            }
+        }else{
+            if($res->count() >= 20){
+                return redirect('interview')->with('toast', 'showToast2("Kuota pennuh, cari tanggal lain")');
+            }
         }
 
         $data = [

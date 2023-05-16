@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\SelfAssessment;
-use App\Models\SelfAssessmentJobs;
 use Illuminate\Http\Request;
+use App\Models\SelfAssessment;
+use App\Models\SelfAssessmentTwo;
+use App\Models\SelfAssessmentJobs;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Yajra\DataTables\Facades\DataTables;
@@ -213,6 +214,7 @@ class SelfAssessmentController extends Controller
         return redirect('selfassessment')->with('toast', 'showToast("Data berhasil disimpan")');
     }
 
+    
     /**
      * Display the specified resource.
      */

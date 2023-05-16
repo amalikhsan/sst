@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('tanggal_kegiatan');
             $table->string('bukti');
             $table->string('link');
+            $table->string('score')->nullable();
             $table->enum('status',['allow','deny'])->nullable()->default('deny');
             $table->timestamps();
         });

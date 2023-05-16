@@ -8,7 +8,7 @@
         <div class="card-header">
             <h4>Activity Report List</h4>
             <div class="card-header-action">
-                <a href="{{ route('activityreport-create') }}" class="btn btn-primary">
+                <a href="{{ route('activityreport/create') }}" class="btn btn-primary">
                     <i class="fa fa-plus mr-1"></i>
                     Add New
                 </a>
@@ -20,17 +20,6 @@
                     <thead>
                         <tr>
                             <th>No</th>
-                            {{--  <th>Nama Lengkap</th>
-                            <th>NPM</th>
-                            <th>Jurusan</th>
-                            <th>Program Studi</th>
-                            <th>Jalur Masuk</th>
-                            <th>Semester/Angkatan</th>
-                            <th>Beasiswa</th>
-                            <th>Pendapatan Orang Tua</th>
-                            <th>Uang Saku Satu Bulan</th>
-                            <th>Index Prestasi</th>
-                            <th>Index Prestasi Kumulatif</th>  --}}
                             <th>Semester (Saat Ikut Kegiatan)</th>
                             <th>Bidang kegiatan</th>
                             <th>Capaian Kegiatan</th>
@@ -69,17 +58,6 @@
             ],
             columns: [
                 {data: 'id', name: 'id'},
-               /*{data:'nama_lengkap',name:'nama_lengkap'},
-            {data:'npm',name:'npm'},
-            {data:'jurusan',name:'jurusan'},
-            {data:'prodi',name:'prodi'},
-            {data:'jalur_masuk',name:'jalur_masuk'},
-            {data:'semester',name:'semester'},
-            {data:'beasiswa',name:'beasiswa'},
-            {data:'pendapatan_orangtua',name:'pendapatan_orangtua'},
-            {data:'uang_saku_satu_bulan',name:'uang_saku_satu_perbulan'},
-            {data:'index_prestasi',name:'index_prestasi'},
-            {data:'index_prestasi_kumulatif',name:'index_prestasi_kumulatif'},*/
             {data:'semester',name:'semester'},
             {data:'bidang',name:'bidang'},
             {data:'capaian',name:'capaian'},

@@ -4,6 +4,17 @@
 @section('desc', ' Wawancara. ')
 
 @section('content')
+@if($cek2)
+@php
+    if($cek2->prodi=='D3'){
+        $max = 6;
+    }elseif($cek->prodi == 'D4'){
+        $max = 8;
+    }
+
+@endphp
+@if($cek)
+@if($cek->semester==$max)
     <div class="card">
         <div class="card-header">
             <h4>Interview</h4>
@@ -15,7 +26,7 @@
         </div>
         <div class="card-body">
             @if(!$item2)
-            <form action="{{ route('interview-store') }}" method="POST" class="mb-2">
+            <form action="{{ route('interview/store') }}" method="POST" class="mb-2">
                 @method('POST')
                 @csrf
                 <label for="datepicker" class="form-label">Choose Your Date</label>
@@ -41,6 +52,9 @@
             @endif
         </div>
     </div>
+    @endif
+    @endif
+    @endif
 @endsection
 
 @push('scripts')
