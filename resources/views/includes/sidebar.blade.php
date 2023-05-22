@@ -48,6 +48,22 @@
 
         @can('timpsikolog')
             <li class="menu-header">Sub Menu</li>
+            <li class="nav-item dropdown {{ Route::is('selfassessment-timpsikolog*') ? 'active' : '' }}">
+                <a href="#" class="nav-link has-dropdown">
+                    <i class="fas fa-fist-raised"></i>
+                    <span>Self Assessment</span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a href="{{ route('selfassessment-timpsikolog') }}">Self Assessment 1</a></li>
+                    <li><a href="{{ route('selfassessmenttwo-timpsikolog') }}">Self Assessment 2</a></li>
+                </ul>
+            </li>
+            <li class="{{ Route::is('activityreport-timpsikolog*') ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('activityreport-timpsikolog') }}">
+                    <i class="fas fa-clipboard-list"></i>
+                    <span>Activity Report</span>
+                </a>
+            </li>
             <li class="{{ Route::is('interview-timpsikolog*') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ route('interview-timpsikolog') }}">
                     <i class="fas fa-clock"></i>

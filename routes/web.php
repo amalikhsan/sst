@@ -10,12 +10,11 @@ use App\Http\Controllers\ScorePimpinanController;
 use App\Http\Controllers\InterViewQuotaController;
 use App\Http\Controllers\SelfAssessmentController;
 use App\Http\Controllers\StudentProfileController;
-use App\Http\Controllers\ActivityPimpinanController;
-use App\Http\Controllers\InterViewPimpinanController;
 use App\Http\Controllers\SelfAssessmentTwoController;
+use App\Http\Controllers\ActivityTimpsikologController;
 use App\Http\Controllers\InterViewTimpsikologController;
-use App\Http\Controllers\SelfAssessmentPimpinanController;
-use App\Http\Controllers\SelfAssessmentTwoPimpinanController;
+use App\Http\Controllers\SelfAssessmentTimpsikologController;
+use App\Http\Controllers\SelfAssessmentTwoTimpsikologController;
 
 /*
 |--------------------------------------------------------------------------
@@ -92,6 +91,12 @@ Route::middleware(['auth', 'verified'])->group(function() {
     });
 
     Route::middleware(['can:timpsikolog'])->group(function () {
+        // student selfassessment
+        Route::get('selfassessment-timpsikolog', [SelfAssessmentTimpsikologController::class, 'index'])->name('selfassessment-timpsikolog');
+        // // student selfassessment
+        Route::get('selfassessmenttwo-timpsikolog', [SelfAssessmentTwoTimpsikologController::class, 'index'])->name('selfassessmenttwo-timpsikolog');
+        // // setudent activity report
+        Route::get('activityreport-timpsikolog', [ActivityTimpsikologController::class, 'index'])->name('activityreport-timpsikolog');
         // student interview
         Route::get('interview-timpsikolog', [InterViewTimpsikologController::class, 'index'])->name('interview-timpsikolog');
         Route::get('interview-timpsikolog/create', [InterViewTimpsikologController::class, 'create'])->name('interview-timpsikolog/create');
@@ -109,14 +114,6 @@ Route::middleware(['auth', 'verified'])->group(function() {
     });
 
     Route::middleware(['can:pimpinan'])->group(function () {
-        // student selfassessment
-        Route::get('selfassessment-pimpinan', [SelfAssessmentPimpinanController::class, 'index'])->name('selfassessment-pimpinan');
-        // student selfassessment
-        Route::get('selfassessmenttwo-pimpinan', [SelfAssessmentTwoPimpinanController::class, 'index'])->name('selfassessmenttwo-pimpinan');
-        // student interview
-        Route::get('interview-pimpinan', [InterViewPimpinanController::class, 'index'])->name('interview-pimpinan');
-        // setudent activity report
-        Route::get('activityreport-pimpinan', [ActivityPimpinanController::class, 'index'])->name('activityreport-pimpinan');
         // score
         Route::get('score-pimpinan', [ScorePimpinanController::class, 'index'])->name('score-pimpinan');
     });

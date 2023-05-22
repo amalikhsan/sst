@@ -8,13 +8,13 @@
 @php
     if($cek2->prodi=='D3'){
         $max = 6;
-    }elseif($cek->prodi == 'D4'){
+    }else if($cek2->prodi == 'D4'){
         $max = 8;
     }
 
 @endphp
 @if($cek)
-@if($cek->semester==$max)
+@if($cek->semester==$max && $cek->status=="allow")
     <div class="card">
         <div class="card-header">
             <h4>Interview</h4>

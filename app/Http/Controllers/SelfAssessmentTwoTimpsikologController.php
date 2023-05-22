@@ -2,17 +2,25 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\ActivityPimpinan;
+use App\Models\SelfAssessmentTwo;
 use Illuminate\Http\Request;
+use Yajra\DataTables\Facades\DataTables;
 
-class ActivityPimpinanController extends Controller
+class SelfAssessmentTwoTimpsikologController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        if ($request->ajax()) {
+            $query = SelfAssessmentTwo::with('user')->get();
+            return DataTables::of($query)->addColumn('name', function ($row) {
+                return $row->user->name;
+            })->make();
+        }
+
+        return view('pages.timpsikolog.selfassessmenttwo.index');
     }
 
     /**
@@ -34,7 +42,7 @@ class ActivityPimpinanController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(ActivityPimpinan $activityPimpinan)
+    public function show(string $id)
     {
         //
     }
@@ -42,7 +50,7 @@ class ActivityPimpinanController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(ActivityPimpinan $activityPimpinan)
+    public function edit(string $id)
     {
         //
     }
@@ -50,7 +58,7 @@ class ActivityPimpinanController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, ActivityPimpinan $activityPimpinan)
+    public function update(Request $request, string $id)
     {
         //
     }
@@ -58,7 +66,7 @@ class ActivityPimpinanController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(ActivityPimpinan $activityPimpinan)
+    public function destroy(string $id)
     {
         //
     }

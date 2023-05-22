@@ -239,7 +239,7 @@
             enam.addClass('d-none');
             tujuh.addClass('d-none');
             lingkupan.removeClass('d-none');
-        }else if(val=="Rekognisi"){
+        }else if(val=="Rekognisi/ Pengakuan"){
             satu.addClass('d-none');
             dua.removeClass('d-none');
             tiga.addClass('d-none');

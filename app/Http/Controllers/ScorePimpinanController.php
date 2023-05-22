@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\ScorePimpinan;
 use Illuminate\Http\Request;
 
 class ScorePimpinanController extends Controller
@@ -34,7 +33,7 @@ class ScorePimpinanController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(ScorePimpinan $scorePimpinan)
+    public function show(string $id)
     {
         //
     }
@@ -42,7 +41,7 @@ class ScorePimpinanController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(ScorePimpinan $scorePimpinan)
+    public function edit(string $id)
     {
         //
     }
@@ -50,7 +49,7 @@ class ScorePimpinanController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, ScorePimpinan $scorePimpinan)
+    public function update(Request $request, string $id)
     {
         //
     }
@@ -58,7 +57,7 @@ class ScorePimpinanController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(ScorePimpinan $scorePimpinan)
+    public function destroy(string $id)
     {
         //
     }

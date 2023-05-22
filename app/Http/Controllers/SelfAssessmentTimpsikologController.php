@@ -2,21 +2,25 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Activity;
+use App\Models\SelfAssessment;
 use Illuminate\Http\Request;
+use Yajra\DataTables\Facades\DataTables;
 
-class ActivityScoreController extends Controller
+class SelfAssessmentTimpsikologController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index(Request $request)
     {
-        $item = Activity::with('user')->where('user_id', auth()->user()->id)->get();
+        if ($request->ajax()) {
+            $query = SelfAssessment::with('user')->get();
+            return DataTables::of($query)->addColumn('name', function ($row) {
+                return $row->user->name;
+            })->make();
+        }
 
-        return view('pages.mahasiswa.activityscore.index', [
-            'item' => $item
-        ]);
+        return view('pages.timpsikolog.selfassessment.index');
     }
 
     /**
@@ -24,6 +28,7 @@ class ActivityScoreController extends Controller
      */
     public function create()
     {
+        //
     }
 
     /**
@@ -31,6 +36,7 @@ class ActivityScoreController extends Controller
      */
     public function store(Request $request)
     {
+        //
     }
 
     /**
@@ -46,6 +52,7 @@ class ActivityScoreController extends Controller
      */
     public function edit(string $id)
     {
+        //
     }
 
     /**
@@ -53,6 +60,7 @@ class ActivityScoreController extends Controller
      */
     public function update(Request $request, string $id)
     {
+        //
     }
 
     /**
@@ -60,5 +68,6 @@ class ActivityScoreController extends Controller
      */
     public function destroy(string $id)
     {
+        //
     }
 }

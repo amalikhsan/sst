@@ -1,9 +1,10 @@
 @extends('layouts.app')
 
-@section('title', 'Self Assesment')
-@section('desc', ' Penilaian Mandiri. ')
+@section('title', 'Self Assesment 2')
+@section('desc', ' Penilaian Mandiri 2. ')
 
 @section('content')
+@if($item2)
 @if(!$item)
 <div class="card">
     <form action="{{ route('selfassessmenttwo/store') }}" method="POST" class="needs-validation" autocomplete="off">
@@ -16,7 +17,6 @@
                     <i class="fa fa-play mr-1"></i>
                     Start Self Assessment 2
                 </button>
-                <p class="text-danger mb-0">Hanya Untuk Semester Akhir*</p>
             </div>
         </div>
         <div class="card-body d-none" id="item2">
@@ -47,6 +47,7 @@
         </div>
     </div>
 </div>
+@endif
 @endif
 @endsection
 

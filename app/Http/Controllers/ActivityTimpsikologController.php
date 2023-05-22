@@ -2,17 +2,25 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\SelfAssessmentTwoPimpinan;
+use App\Models\Activity;
 use Illuminate\Http\Request;
+use Yajra\DataTables\Facades\DataTables;
 
-class SelfAssessmentTwoPimpinanController extends Controller
+class ActivityTimpsikologController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        if ($request->ajax()) {
+            $query = Activity::with('user')->get();
+            return DataTables::of($query)->addColumn('name', function ($row) {
+                return $row->user->name;
+            })->make();
+        }
+
+        return view('pages.timpsikolog.activity.index');
     }
 
     /**
@@ -34,7 +42,7 @@ class SelfAssessmentTwoPimpinanController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(SelfAssessmentTwoPimpinan $selfAssessmentTwoPimpinan)
+    public function show(string $id)
     {
         //
     }
@@ -42,7 +50,7 @@ class SelfAssessmentTwoPimpinanController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(SelfAssessmentTwoPimpinan $selfAssessmentTwoPimpinan)
+    public function edit(string $id)
     {
         //
     }
@@ -50,7 +58,7 @@ class SelfAssessmentTwoPimpinanController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, SelfAssessmentTwoPimpinan $selfAssessmentTwoPimpinan)
+    public function update(Request $request, string $id)
     {
         //
     }
@@ -58,7 +66,7 @@ class SelfAssessmentTwoPimpinanController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(SelfAssessmentTwoPimpinan $selfAssessmentTwoPimpinan)
+    public function destroy(string $id)
     {
         //
     }

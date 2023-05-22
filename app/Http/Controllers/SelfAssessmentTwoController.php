@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Activity;
 use Illuminate\Http\Request;
+use App\Models\StudentProfile;
 use App\Models\SelfAssessmentTwo;
 use App\Models\SelfAssessmentJobs;
 use Yajra\DataTables\Facades\DataTables;
@@ -20,10 +22,30 @@ class SelfAssessmentTwoController extends Controller
             $query = SelfAssessmentJobs::get();
             return DataTables::of($query)->make();
         }
+        $cek = StudentProfile::where('user_id', $userid)->first();
 
+        if(!$cek){
+            $max=0;
+        }else{
+            if($cek->prodi == 'D3'){
+                $max = "6";
+            }else if($cek->prodi=='D4'){
+                $max = "8";
+            }
+        }
+
+        $item = Activity::where([
+            ['user_id', $userid],
+            ['semester', $max],
+            ['status','allow']
+        ])->first();
+
+        
         $item2 = SelfAssessmentTwo::where('user_id', $userid)->first();
+
         return view('pages.mahasiswa.selfassessmenttwo.index', [
-            'item' => $item2
+            'item' => $item2,
+            'item2' => $item
         ]);
     }
 

@@ -8,7 +8,6 @@
 
     @include('includes.style')
     @stack('styles')
-    @vite([])
 </head>
 
 <body>

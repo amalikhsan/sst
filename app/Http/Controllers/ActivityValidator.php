@@ -13,8 +13,8 @@ class ActivityValidator extends Controller
      */
     public function index(Request $request)
     {
-        $query = Activity::with('user')->get();
         if ($request->ajax()) {
+            $query = Activity::with('user')->get();
             return DataTables::of($query)->addColumn('name', function ($row) {
                 return $row->user->name;
             })->make();

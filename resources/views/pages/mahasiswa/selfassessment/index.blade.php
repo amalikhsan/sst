@@ -16,7 +16,6 @@
                     <i class="fa fa-play mr-1"></i>
                     Start Self Assessment 1
                 </button>
-                <p class="text-danger mb-0">Hanya Untuk Semester Pertama*</p>
             </div>
         </div>
         <div class="card-body d-none" id="item">
