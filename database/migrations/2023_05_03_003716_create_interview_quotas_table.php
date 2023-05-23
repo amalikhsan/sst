@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('interview_quotas', function (Blueprint $table) {
+        Schema::create('inter_view_quotas', function (Blueprint $table) {
             $table->id();
             $table->string('quota');
             $table->timestamps();
@@ -23,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('interview_quotas');
+        Schema::dropIfExists('inter_view_quotas');
     }
 };

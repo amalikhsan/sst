@@ -4,17 +4,7 @@
 @section('desc', ' Wawancara. ')
 
 @section('content')
-@if($cek2)
-@php
-    if($cek2->prodi=='D3'){
-        $max = 6;
-    }else if($cek2->prodi == 'D4'){
-        $max = 8;
-    }
-
-@endphp
 @if($cek)
-@if($cek->semester==$max && $cek->status=="allow")
     <div class="card">
         <div class="card-header">
             <h4>Interview</h4>
@@ -52,8 +42,6 @@
             @endif
         </div>
     </div>
-    @endif
-    @endif
     @endif
 @endsection
 

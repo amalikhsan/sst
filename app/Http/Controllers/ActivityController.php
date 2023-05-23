@@ -86,11 +86,11 @@ class ActivityController extends Controller
      */
     public function edit(string $id)
     {
-        $item = Activity::findOrFail($id);
+        // $item = Activity::findOrFail($id);
 
-        return view('pages.mahasiswa.activity.edit', [
-            'item'  =>  $item
-        ]);
+        // return view('pages.mahasiswa.activity.edit', [
+        //     'item'  =>  $item
+        // ]);
     }
 
     /**
@@ -143,12 +143,12 @@ class ActivityController extends Controller
      */
     public function destroy(string $id)
     {
-        $Activity = Activity::findOrFail($id);
-        $path = "file-bukti/";
-        $oldfile = $path.basename($Activity->bukti);
-        Storage::disk('public')->delete($oldfile);
-        $Activity->delete();
+        // $Activity = Activity::findOrFail($id);
+        // $path = "file-bukti/";
+        // $oldfile = $path.basename($Activity->bukti);
+        // Storage::disk('public')->delete($oldfile);
+        // $Activity->delete();
 
-        return redirect()->back()->with('toast', 'showToast("Data berhasil dihapus")');
+        // return redirect()->back()->with('toast', 'showToast("Data berhasil dihapus")');
     }
 }

@@ -84,26 +84,10 @@
 
         @can('pimpinan')
             <li class="menu-header">Sub Menu</li>
-            <li class="nav-item dropdown {{ Route::is('selfassessment-pimpinan*') ? 'active' : '' }}">
-                <a href="#" class="nav-link has-dropdown">
-                    <i class="fas fa-fist-raised"></i>
-                    <span>Self Assessment</span>
-                </a>
-                <ul class="dropdown-menu">
-                    <li><a href="{{ route('selfassessment-pimpinan') }}">Self Assessment 1</a></li>
-                    <li><a href="{{ route('selfassessmenttwo-pimpinan') }}">Self Assessment 2</a></li>
-                </ul>
-            </li>
-            <li class="{{ Route::is('activityreport-pimpinan*') ? 'active' : '' }}">
-                <a class="nav-link" href="{{ route('activityreport-pimpinan') }}">
-                    <i class="fas fa-clipboard-list"></i>
-                    <span>Activity Report</span>
-                </a>
-            </li>
-            <li class="{{ Route::is('interview-pimpinan*') ? 'active' : '' }}">
-                <a class="nav-link" href="{{ route('interview-pimpinan') }}">
+            <li class="{{ Route::is('score-pimpinan*') ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('score-pimpinan') }}">
                     <i class="fas fa-clock"></i>
-                    <span>Interview</span>
+                    <span>score</span>
                 </a>
             </li>
         @endcan

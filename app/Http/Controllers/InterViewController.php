@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Activity;
 use App\Models\InterView;
 use Illuminate\Http\Request;
-use App\Models\InterviewQuota;
+use App\Models\InterViewQuota;
 use App\Models\StudentProfile;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
@@ -18,15 +18,30 @@ class InterViewController extends Controller
      */
     public function index()
     {
-        $cek = Activity::with('user')->where('user_id', auth()->user()->id)->first();
         $cek2 = StudentProfile::with('user')->where('user_id', auth()->user()->id)->first();
-        $item = InterView::with('user')->get();
-        $item2 = InterView::with('user')->where('user_id',auth()->user()->id)->first();
+        if (!$cek2) {
+            $max = 0;
+        } else {
+            if ($cek2->prodi == 'D3') {
+                $max = "6";
+            } else if ($cek2->prodi == 'D4') {
+                $max = "8";
+            }
+        }
+
+        $cek = Activity::where([
+            ['user_id', auth()->user()->id],
+            ['semester', $max],
+            ['status', 'allow']
+        ])->first();
+
+            $item = InterView::with('user')->get();
+            $item2 = InterView::with('user')->where('user_id',auth()->user()->id)->first();
+            
         return view('pages.mahasiswa.interview.index',[
             'item' => $item,
             'item2'=>$item2,
-            'cek'=>$cek,
-            'cek2'=>$cek2
+            'cek'=>$cek
         ]);
     }
 
