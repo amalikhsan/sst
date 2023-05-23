@@ -63,7 +63,7 @@ class SelfAssessmentTwoController extends Controller
     public function store(Request $request)
     {
         $userid = auth()->user()->id;
-
+        
         $request->validate([
             'pilih21' => 'required|max:255',
             'pilih22' => 'required|max:255',
@@ -232,7 +232,7 @@ class SelfAssessmentTwoController extends Controller
 
         SelfAssessmentTwo::create($data);
 
-        return redirect('selfassessment')->with('toast', 'showToast("Data berhasil disimpan")');
+        return redirect('selfassessmenttwo')->with('toast', 'showToast("Data berhasil disimpan")');
     }
 
 

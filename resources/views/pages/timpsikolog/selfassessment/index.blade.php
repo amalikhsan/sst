@@ -88,7 +88,7 @@
             {data:'kat1_var4',name:'kat1_var4'},
             {data:'kat1_var5',name:'kat1_var5'},
             {data:'kat1_var6',name:'kat1_var6'},
-            {data:'kat1_var7',name:'kat1_var7'},
+            {data:'kat2_var7',name:'kat2_var7'},
             {data:'kat2_var8',name:'kat2_var8'},
             {data:'kat2_var9',name:'kat2_var9'},
             {data:'kat2_var10',name:'kat2_var10'},

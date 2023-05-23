@@ -6,6 +6,7 @@ use App\Models\Activity;
 use App\Models\InterView;
 use Illuminate\Http\Request;
 use App\Models\InterViewQuota;
+use App\Models\SelfAssessment;
 use App\Models\StudentProfile;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
@@ -18,7 +19,10 @@ class InterViewController extends Controller
      */
     public function index()
     {
+        $cek3 = SelfAssessment::with('user')->where('user_id', auth()->user()->id)->first();
         $cek2 = StudentProfile::with('user')->where('user_id', auth()->user()->id)->first();
+        $cek=null;
+        if($cek3){
         if (!$cek2) {
             $max = 0;
         } else {
@@ -34,9 +38,10 @@ class InterViewController extends Controller
             ['semester', $max],
             ['status', 'allow']
         ])->first();
+        }
 
-            $item = InterView::with('user')->get();
-            $item2 = InterView::with('user')->where('user_id',auth()->user()->id)->first();
+        $item = InterView::with('user')->get();
+        $item2 = InterView::with('user')->where('user_id',auth()->user()->id)->first();
             
         return view('pages.mahasiswa.interview.index',[
             'item' => $item,
