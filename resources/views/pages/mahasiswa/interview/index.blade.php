@@ -42,6 +42,8 @@
             @endif
         </div>
     </div>
+    @else
+    Maaf anda belum bisa memilih tanggal interview dikarenakan anda belum mengisi/validasi <b>Activity Report</b> semester akhir atau belum mengerjakan <b>Self Assessment 2</b>
     @endif
 @endsection
 

@@ -70,7 +70,7 @@ class ActivityValidator extends Controller
             'status' => 'required|max:255'
         ]);
 
-        if ($request->status == 'allow') {
+        if ($request->status == 'validasi') {
             $datas = 0;
             if ($Activity->bidang == 'Kompetisi') {
                 if ($Activity->capaian == 'Juara 1 Perorangan') {

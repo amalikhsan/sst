@@ -92,10 +92,10 @@
             },{
                 "targets": -1,
                 "render": function(data, type, row, meta) {
-                    if(data=="allow"){
-                        return `<div class="badge badge-success">Verifikasi</div>`;
+                    if(data=="validasi"){
+                        return `<div class="badge badge-success">Validasi</div>`;
                     } else {
-                        return `<div class="badge badge-danger">Belum Diverifikasi</div>`;
+                        return `<div class="badge badge-danger">Belum Divalidasi</div>`;
                     }
                 }
             }],

@@ -98,7 +98,7 @@
                         <h4>Avatar</h4>
                     </div>
                     <div class="card-body">
-                        <img alt="image" src="{{ asset('/assets/img/avatar/avatar-1.png') }}" class="rounded-circle w-100 mb-3">
+                        <img style="width:35px;height:35px;" alt="image" src="{{ asset('/assets/img/avatar/avatar-1.png') }}" class="rounded-circle w-100 mb-3">
                         <div class="clearfix"></div>
                         <div class="custom-file">
                             <input type="file" class="custom-file-input" id="avatar" name="avatar">

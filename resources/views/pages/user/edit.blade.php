@@ -99,9 +99,9 @@
                     </div>
                     <div class="card-body">
                         @if($item->avatar)
-                            <img alt="image" src="{{ asset('storage') }}/{{ $item->avatar }}" class="rounded-circle w-100 mb-3">
+                            <img style="width:35px;height:35px;" alt="image" src="{{ asset('storage') }}/{{ $item->avatar }}" class="rounded-circle w-100 mb-3">
                         @else
-                            <img alt="image" src="{{ asset('/assets/img/avatar/avatar-1.png') }}" class="rounded-circle w-100 mb-3">
+                            <img style="width:35px;height:35px;" alt="image" src="{{ asset('/assets/img/avatar/avatar-1.png') }}" class="rounded-circle w-100 mb-3">
                         @endif
                         <div class="clearfix"></div>
                         <div class="custom-file">

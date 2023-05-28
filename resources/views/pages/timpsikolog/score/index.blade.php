@@ -52,7 +52,7 @@
             columnDefs: [{
                 "targets": -1,
                 "render": function(data, type, row, meta) {
-                    return `<a href="{{ url('/score-pimpinan') }}/${row.id}/show" class="btn btn-primary"><i class="fas fa-star"> Score</i></a>`;
+                    return `<a href="{{ url('/score-timpsikolog') }}/${row.id}/show" class="btn btn-primary"><i class="fas fa-star"> Score</i></a>`;
                 }
             }],
             rowId: function(a) {

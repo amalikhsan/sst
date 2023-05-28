@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('uang_saku_satu_bulan');
             $table->string('index_prestasi')->nullable();
             $table->string('index_prestasi_kumulatif')->nullable();
-            $table->enum('status', ['allow', 'deny'])->nullable()->default('deny');
+            $table->enum('status', ['validasi', 'Belum Divalidasi'])->nullable()->default('Belum Divalidasi');
             $table->timestamps();
         });
     }

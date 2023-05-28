@@ -11,9 +11,9 @@
     <li class="dropdown">
         <a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
             @if(auth()->user()->avatar)
-                <img alt="image" src="{{ asset('storage/'.auth()->user()->avatar) }}" class="rounded-circle mr-1">
+                <img style="width:35px;height:35px;" alt="image" src="{{ asset('storage/'.auth()->user()->avatar) }}" class="rounded-circle mr-1">
             @else
-                <img alt="image" src="{{ asset('/assets/img/avatar/avatar-1.png') }}" class="rounded-circle mr-1">
+                <img style="width:35px;height:35px;" alt="image" src="{{ asset('/assets/img/avatar/avatar-1.png') }}" class="rounded-circle mr-1">
             @endif
             <div class="d-sm-none d-lg-inline-block">Hi, {{ auth()->user()->name }}</div>
         </a>

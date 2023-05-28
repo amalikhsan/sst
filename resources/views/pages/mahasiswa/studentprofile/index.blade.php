@@ -5,7 +5,7 @@
 
 @section('content')
 @if($item)
-@if($item->status=="allow")
+@if($item->status=="validasi")
 <div class="card">
         <div class="card-header">
             <h4>Profile</h4>
@@ -417,7 +417,7 @@ $('#btn2').click(function(){
     if (res.dismiss!="cancel") {
         $("<input/>").attr("type", "hidden")
             .attr("name", "status")
-            .attr("value", "allow")
+            .attr("value", "Validasi")
             .appendTo("form");
         $('form').submit();
     }

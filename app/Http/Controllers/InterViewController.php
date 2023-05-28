@@ -6,7 +6,7 @@ use App\Models\Activity;
 use App\Models\InterView;
 use Illuminate\Http\Request;
 use App\Models\InterViewQuota;
-use App\Models\SelfAssessment;
+use App\Models\SelfAssessmentTwo;
 use App\Models\StudentProfile;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
@@ -19,7 +19,7 @@ class InterViewController extends Controller
      */
     public function index()
     {
-        $cek3 = SelfAssessment::with('user')->where('user_id', auth()->user()->id)->first();
+        $cek3 = SelfAssessmentTwo::with('user')->where('user_id', auth()->user()->id)->first();
         $cek2 = StudentProfile::with('user')->where('user_id', auth()->user()->id)->first();
         $cek=null;
         if($cek3){
@@ -36,7 +36,7 @@ class InterViewController extends Controller
         $cek = Activity::where([
             ['user_id', auth()->user()->id],
             ['semester', $max],
-            ['status', 'allow']
+            ['status', 'validasi']
         ])->first();
         }
 
@@ -73,11 +73,11 @@ class InterViewController extends Controller
         $quota = InterViewQuota::first();
         if($quota){
             if ($res->count() >= $quota->quota) {
-                return redirect('interview')->with('toast', 'showToast2("Kuota pennuh, cari tanggal lain")');
+                return redirect('interview')->with('toast', 'showToast2("Kuota penuh, cari tanggal lain")');
             }
         }else{
             if($res->count() >= 20){
-                return redirect('interview')->with('toast', 'showToast2("Kuota pennuh, cari tanggal lain")');
+                return redirect('interview')->with('toast', 'showToast2("Kuota penuh, cari tanggal lain")');
             }
         }
 

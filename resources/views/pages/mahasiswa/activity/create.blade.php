@@ -208,7 +208,7 @@
     if (res.dismiss!="cancel") {
         $("<input/>").attr("type", "hidden")
             .attr("name", "status")
-            .attr("value", "deny")
+            .attr("value", "Belum Divalidasi")
             .appendTo("form");
         $('form').submit();
     }

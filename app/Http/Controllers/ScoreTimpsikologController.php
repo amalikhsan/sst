@@ -4,13 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Activity;
-use Illuminate\Http\Request;
-use App\Models\StudentProfile;
-use App\Models\SelfAssessmentTwo;
 use App\Models\InterViewTimpsikolog;
+use Illuminate\Http\Request;
+use App\Models\SelfAssessmentTwo;
+use App\Models\StudentProfile;
 use Yajra\DataTables\Facades\DataTables;
 
-class ScorePimpinanController extends Controller
+class ScoreTimpsikologController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,11 +18,11 @@ class ScorePimpinanController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            $query = User::where('role', 'mahasiswa')->get();
+            $query = User::where('role','mahasiswa')->get();
             return DataTables::of($query)->make();
         }
 
-        return view('pages.pimpinan.score.index');
+        return view('pages.timpsikolog.score.index');
     }
 
     /**
@@ -50,30 +50,30 @@ class ScorePimpinanController extends Controller
         $activity = Activity::where('user_id', $id)->get();
         $interview = InterViewTimpsikolog::where('user_id', $id)->first();
         $studentprofile = StudentProfile::where('user_id', $id)->first();
-
-        $hasilactivity = '';
-        if ($selfassessmenttwo && $activity && $interview && $studentprofile) {
+        
+        $hasilactivity='';
+        if($selfassessmenttwo && $activity && $interview && $studentprofile) {
             if ($studentprofile->prodi == 'D3') {
                 $max = "6";
             } else if ($studentprofile->prodi == 'D4') {
                 $max = "8";
             }
-
-            $activityscore = 0;
-            foreach ($activity as $act) {
+            
+            $activityscore=0;
+            foreach ($activity as $act){
                 $activityscore += $act->score;
             }
 
-            if ($activityscore > 4) {
+            if($activityscore>4){
                 $activityscore2 = 4;
-            } else {
+            }else{
                 $activityscore2 = $activityscore;
             }
 
-            $hasilactivity = $activityscore2 / $max;
+            $hasilactivity = $activityscore2/$max;
         }
 
-        return view('pages.pimpinan.score.show', [
+        return view('pages.timpsikolog.score.show',[
             'selfassessmenttwo' => $selfassessmenttwo,
             'hasilactivity' => $hasilactivity,
             'interview' => $interview,

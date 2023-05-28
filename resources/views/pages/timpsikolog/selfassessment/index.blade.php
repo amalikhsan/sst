@@ -55,16 +55,11 @@
     $(function() {
         var datatable = $('#datatable').DataTable({
             dom: 'Bfrtip',
-            buttons: [
-                {
-                    extend: 'csv',
-                    text: 'Export CSV',
-                    className: 'btn-primary',
-                    exportOptions: {
-                        orthogonal: null
-                    }
-                },
-            ],
+            buttons:[
+                {extend:'copy',className:"btn btn-primary"},
+                {extend:'excel',className:"btn btn-primary"},
+                {extend:'csv',className:"btn btn-primary"}
+                ],
             processing: true,
             serverSide: true,
             ordering: true,

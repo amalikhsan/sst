@@ -70,6 +70,12 @@
                     <span>Interview</span>
                 </a>
             </li>
+            <li class="{{ Route::is('score-timpsikolog*') ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('score-timpsikolog') }}">
+                    <i class="fas fa-star"></i>
+                    <span>score</span>
+                </a>
+            </li>
         @endcan
 
         @can('validator')
@@ -86,7 +92,7 @@
             <li class="menu-header">Sub Menu</li>
             <li class="{{ Route::is('score-pimpinan*') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ route('score-pimpinan') }}">
-                    <i class="fas fa-clock"></i>
+                    <i class="fas fa-star"></i>
                     <span>score</span>
                 </a>
             </li>

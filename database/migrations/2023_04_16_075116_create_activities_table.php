@@ -24,7 +24,7 @@ return new class extends Migration
             $table->string('bukti');
             $table->string('link');
             $table->string('score')->nullable();
-            $table->enum('status',['allow','deny'])->nullable()->default('deny');
+            $table->enum('status',['validasi','Belum Divalidasi'])->nullable()->default('Belum Divalidasi');
             $table->timestamps();
         });
     }

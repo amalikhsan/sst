@@ -16,8 +16,8 @@
                 <label class="form-label" for="status">Status</label>
                 <select name="status" class="form-control  @error('status') is-invalid @enderror" id="status">
                     <option value="">Pilih Status</option>
-                    <option value="allow"{{ $item->status=="allow"?'selected':''}}>Allow</option>
-                    <option value="deny"{{ $item->status=="deny"?'selected':''}}>Deny</option>
+                    <option value="validasi"{{ $item->status=="Validasi"?'selected':''}}>Validasi</option>
+                    <option value="belum divalidasi"{{ $item->status=="Belum Divalidasi"?'selected':''}}>Belum Divalidasi</option>
                 </select>
                 @error('status')
                     <div class="invalid-feedback">

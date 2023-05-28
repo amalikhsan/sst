@@ -109,18 +109,18 @@
                 </div>
               </div>
             <div class="card-body">
-                <form action="{{ route('change-profile-avatar') }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('change-profile-avatar') }}" method="POST" enctype="multipart/form-data" class="text-center">
                     @method('PUT')
                     @csrf
                     @if(auth()->user()->avatar)
-                        <img alt="image" src="{{ asset('storage/'.auth()->user()->avatar) }}" class="rounded-circle img-fluid mb-3">
+                        <img style="height:300px;" alt="image" src="{{ asset('storage/'.auth()->user()->avatar) }}" class="rounded-circle img-fluid mb-3">
                     @else
-                        <img alt="image" src="{{ asset('/assets/img/avatar/avatar-1.png') }}" class="rounded-circle w-100 mb-3">
+                        <img style="height:300px;" alt="image" src="{{ asset('/assets/img/avatar/avatar-1.png') }}" class="rounded-circle img-fluid mb-3">
                     @endif
                     <div class="clearfix"></div>
                     <div class="custom-file">
                         <input type="file" class="custom-file-input" name="avatar" id="avatar" onchange="return this.form.submit()">
-                        <label class="custom-file-label" for="avatar">Choose Avatar</label>
+                        <label class="custom-file-label text-left" for="avatar">Choose Avatar</label>
                     </div>
                 </form>
             </div>

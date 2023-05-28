@@ -48,6 +48,8 @@
     </div>
 </div>
 @endif
+@else
+Maaf anda belum bisa mengerjakan <b>Self Assesment 2</b> interview dikarenakan anda belum mengisi/validasi <b>Activity Report</b>
 @endif
 @endsection
 

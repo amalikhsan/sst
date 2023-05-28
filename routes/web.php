@@ -10,6 +10,7 @@ use App\Http\Controllers\ScorePimpinanController;
 use App\Http\Controllers\InterViewQuotaController;
 use App\Http\Controllers\SelfAssessmentController;
 use App\Http\Controllers\StudentProfileController;
+use App\Http\Controllers\ScoreTimpsikologController;
 use App\Http\Controllers\SelfAssessmentTwoController;
 use App\Http\Controllers\ActivityTimpsikologController;
 use App\Http\Controllers\InterViewTimpsikologController;
@@ -93,10 +94,13 @@ Route::middleware(['auth', 'verified'])->group(function() {
     Route::middleware(['can:timpsikolog'])->group(function () {
         // student selfassessment
         Route::get('selfassessment-timpsikolog', [SelfAssessmentTimpsikologController::class, 'index'])->name('selfassessment-timpsikolog');
-        // // student selfassessment
+        // student selfassessment
         Route::get('selfassessmenttwo-timpsikolog', [SelfAssessmentTwoTimpsikologController::class, 'index'])->name('selfassessmenttwo-timpsikolog');
-        // // setudent activity report
+        // setudent activity report
         Route::get('activityreport-timpsikolog', [ActivityTimpsikologController::class, 'index'])->name('activityreport-timpsikolog');
+        // student final score
+        Route::get('score-timpsikolog', [ScoreTimpsikologController::class, 'index'])->name('score-timpsikolog');
+        Route::get('score-timpsikolog/{id}/show', [ScoreTimpsikologController::class, 'show'])->name('score-timpsikolog/show');
         // student interview
         Route::get('interview-timpsikolog', [InterViewTimpsikologController::class, 'index'])->name('interview-timpsikolog');
         Route::get('interview-timpsikolog/create', [InterViewTimpsikologController::class, 'create'])->name('interview-timpsikolog/create');
@@ -116,6 +120,7 @@ Route::middleware(['auth', 'verified'])->group(function() {
     Route::middleware(['can:pimpinan'])->group(function () {
         // score
         Route::get('score-pimpinan', [ScorePimpinanController::class, 'index'])->name('score-pimpinan');
+        Route::get('score-pimpinan/{id}/show', [ScorePimpinanController::class, 'show'])->name('score-pimpinan/show');
     });
 
     Route::middleware(['can:superadmin'])->group(function () {

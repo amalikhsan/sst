@@ -37,7 +37,7 @@ class SelfAssessmentTwoController extends Controller
         $item = Activity::where([
             ['user_id', $userid],
             ['semester', $max],
-            ['status','allow']
+            ['status','validasi']
         ])->first();
 
         

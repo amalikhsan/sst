@@ -10,6 +10,7 @@ use App\Models\SelfAssessment;
 use App\Models\StudentProfile;
 use App\Models\SelfAssessmentTwo;
 use Laravel\Sanctum\HasApiTokens;
+use App\Models\InterViewTimpsikolog;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -75,6 +76,11 @@ class User extends Authenticatable implements MustVerifyEmail
     public function activity()
     {
         return $this->hasMany(Activity::class);
+    }
+
+    public function interviewtimpsikolog()
+    {
+        return $this->hasMany(InterViewTimpsikolog::class);
     }
 
 }
